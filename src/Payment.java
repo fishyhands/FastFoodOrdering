@@ -8,7 +8,7 @@ public class Payment {
 	public Payment() {}
 	// initialise with default payment methods
 	public Payment(String paymentMethod) {
-		methods = new PaymentMethod[z];
+		methods = new PaymentMethod[10];
 		this.methods[0] = new CreditCard();
 		this.methods[1] = new DebitCard();
 		this.methods[2] = new OnlinePaymentPlatform();
