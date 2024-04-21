@@ -16,6 +16,7 @@ public class Database {
     private static final String STAFFLIST = "staff_list.txt";
     private static final String MENULIST = "menu_list.txt";
     private static final String ORDERLIST = "order_list.txt";
+    private static final String PAYMENTLIST = "payment_methods.txt";
     private static final String SEPARATOR = ",";
 
     public static ArrayList<Branch> readBranchList() throws IOException {
@@ -180,6 +181,24 @@ public class Database {
         }
         write(filePath(ORDERLIST), alw);
     }
+
+
+    public static void readPaymentMethods() throws IOException, ClassNotFoundException{
+        ArrayList paymentMethods = null;
+        FileInputStream fileIn = new FileInputStream(filePath(PAYMENTLIST));
+        ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+        paymentMethods = (ArrayList) objectIn.readObject();
+        objectIn.close();
+    }
+
+    public static void writePaymentMethods(ArrayList paymentMethods) throws IOException{
+        FileOutputStream fileOut = new FileOutputStream(filePath(PAYMENTLIST));
+        ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(paymentMethods);
+        objectOut.close();
+    }
+
+
     private static void write(String fileName, ArrayList<String> data) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(fileName));
         try {

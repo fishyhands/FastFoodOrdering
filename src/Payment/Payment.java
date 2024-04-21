@@ -1,33 +1,25 @@
 package Payment;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Payment {
-	private PaymentMethod methods[];
-	
 	public Payment() {}
 	// initialise with default payment methods
-	public Payment(String paymentMethod) {
-		methods = new PaymentMethod[10];
-		this.methods[0] = new CreditCard();
-		this.methods[1] = new DebitCard();
-		this.methods[2] = new OnlinePaymentPlatform();
-	}
-	
-	
-	public void showMethods() {
+
+	public static void showMethods(ArrayList<? extends PaymentMethod> paymentMethods) {
 		System.out.println("====== Payment Options ======");
-		for (int i = 0; i < methods.length; i++) {
-			System.out.println("|" + i+1 + ". " + methods[i].getName());
+		for (int i = 0; i < paymentMethods.size(); i++) {
+			System.out.println("|" + i+1 + ". " + paymentMethods.get(i).getName());
 		}
 		System.out.println("=============================");
 	}
 	
 	
-	public void addMethod() {
+	public static void addMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
-		showMethods();
+		showMethods(paymentMethods);
 		
 		int choice = -1;
 		
@@ -43,73 +35,81 @@ public class Payment {
 			switch (choice) {
 				case 1:
 					// if Credit Card is available, break
-					for (int i = 0; i < methods.length; i++) {
-						if (methods[i].getName().compareTo("Credit Card") == 0)
+					for (int i = 0; i < paymentMethods.size(); i++) {
+						if (paymentMethods.get(i).getName().compareTo("Credit Card") == 0) {
 							System.out.println("Credit Card payment method already exists!");
 							break;
+						}
 					}
 					
 					// else, make it available
-					this.methods[methods.length] = new CreditCard();
+					CreditCard newCC = new CreditCard();
+					paymentMethods.add(newCC);
 					System.out.println("Payment methods updated!");
-					showMethods();
+					showMethods(paymentMethods);
 					break;
 				case 2:
 					// if Debit Card is available, break
-					for (int i = 0; i < methods.length; i++) {
-						if (methods[i].getName().compareTo("Debit Card") == 0)
+					for (int i = 0; i < paymentMethods.size(); i++) {
+						if (paymentMethods.get(i).getName().compareTo("Debit Card") == 0) {
 							System.out.println("Debit Card payment method already exists!");
 							break;
+						}
 					}
 					
 					// else, make it available
-					this.methods[methods.length] = new DebitCard();
+					DebitCard newDC = new DebitCard();
+					paymentMethods.add(newDC);
 					System.out.println("Payment methods updated!");
-					showMethods();
+					showMethods(paymentMethods);
 					break;
 				case 3:
 					// if Online Payment Platforms are available, break
-					for (int i = 0; i < methods.length; i++) {
-						if (methods[i].getName().compareTo("Online Payment Platform") == 0)
+					for (int i = 0; i < paymentMethods.size(); i++) {
+						if (paymentMethods.get(i).getName().compareTo("Online Payment Platform") == 0) {
 							System.out.println("Online Payment Platform payment method already exists!");
 							break;
+						}
 					}
 					
 					// else, make it available
-					this.methods[methods.length] = new OnlinePaymentPlatform();
+					OnlinePaymentPlatform newOPP = new OnlinePaymentPlatform();
+					paymentMethods.add(newOPP);
 					System.out.println("Payment methods updated!");
-					showMethods();
+					showMethods(paymentMethods);
 					break;
 				case 4:
 					System.out.print("Please enter name of new payment method: ");
 					String name = sc.next();
 					
 					// if already available, break
-					for (int i = 0; i < methods.length; i++) {
-						if (methods[i].getName().equalsIgnoreCase(name))
+					for (int i = 0; i < paymentMethods.size(); i++) {
+						if (paymentMethods.get(i).getName().equalsIgnoreCase(name)) {
 							System.out.println(name + "payment method already exists!");
 							break;
+						}
 					}
 					
 					// else, make it available
-					this.methods[methods.length] = new otherMethods(name);
+					otherMethods newOM = new otherMethods(name);
+					paymentMethods.add(newOM);
 					System.out.println("Payment methods updated!");
-					showMethods();
+					showMethods(paymentMethods);
 					break;
 				default:
 					System.out.println("Invalid choice!");
 			}
-		} while (choice < 1 || choice > methods.length);
+		} while (choice < 1 || choice > paymentMethods.size());
 	}
 	
 	
-	public void removeMethod() {
+	public void removeMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
-		showMethods();
+		showMethods(paymentMethods);
 		
 		int choice = -1;
-		int size = methods.length;
+		int size = paymentMethods.size();
 		
 		do {
 			System.out.println("Which payment method would you like to remove?");
@@ -118,20 +118,17 @@ public class Payment {
 			if (choice < 1 || choice > size)
 				System.out.println("Invalid input!");
 			else {
-				for (int i = choice-1; i < size; i++)
-					methods[i] = methods[i+1];
-				methods[size-1] = null;
-				System.out.println("Payment methods updated!");
-				showMethods();
+				paymentMethods.remove(choice-1);
+				showMethods(paymentMethods);
 			}
 		} while (choice < 1 || choice > size);	
 	}
 	
 	
-	public void pay() {
+	public void pay(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 
-		showMethods();
+		showMethods(paymentMethods);
 		
 		int paymentType = -1;
 		
@@ -140,11 +137,11 @@ public class Payment {
 			paymentType = sc.nextInt();
 		
 			//for invalid choice
-			if (paymentType > methods.length || paymentType < 1)
+			if (paymentType > paymentMethods.size() || paymentType < 1)
 				System.out.println("Invalid input!");
 			else {
-				methods[paymentType-1].process();
+				paymentMethods.get(paymentType).process();
 			}
-		} while (paymentType > methods.length || paymentType < 1);
+		} while (paymentType > paymentMethods.size() || paymentType < 1);
 	}
 }

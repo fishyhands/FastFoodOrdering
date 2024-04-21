@@ -2,16 +2,10 @@ package Payment;
 
 import java.util.Scanner;
 
-public interface PaymentMethod {
-//	void process(double amount);
-	void process();
-	String getName();
-}
 
 class CreditCard implements PaymentMethod {
 	
-	public CreditCard() {
-	}
+	public CreditCard() {}
 	
 	
 	public String getName() {
