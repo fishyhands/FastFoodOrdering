@@ -1,6 +1,7 @@
 package Payment;
 
 import java.util.ArrayList;
+import static Menu.MenuBrowsing.order;
 
 
 public class PaymentMainMenu {
@@ -15,8 +16,8 @@ public class PaymentMainMenu {
 
     public static void PaymentMenu(ArrayList<PaymentMethod> paymentMethods){
         initializePayment(paymentMethods);
-        Payment.pay(paymentMethods);        
-
+        Payment.pay(paymentMethods);
+        order.setPaid(true);
     }  
 }
 
