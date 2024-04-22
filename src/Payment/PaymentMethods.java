@@ -1,9 +1,10 @@
 package Payment;
 
 import java.util.Scanner;
+import java.io.Serializable;
 
 
-class CreditCard implements PaymentMethod {
+class CreditCard implements PaymentMethod, Serializable {
 	
 	public CreditCard() {}
 	
@@ -40,7 +41,7 @@ class CreditCard implements PaymentMethod {
 	}
 }
 
-class DebitCard implements PaymentMethod {
+class DebitCard implements PaymentMethod, Serializable {
 	
 	public DebitCard() {
 	}
@@ -78,7 +79,7 @@ class DebitCard implements PaymentMethod {
 	}
 }
 
-class OnlinePaymentPlatform implements PaymentMethod {
+class OnlinePaymentPlatform implements PaymentMethod, Serializable {
 	
 	public OnlinePaymentPlatform() {
 	}
@@ -129,7 +130,7 @@ class OnlinePaymentPlatform implements PaymentMethod {
 	}
 }
 
-class otherMethods implements PaymentMethod {
+class otherMethods implements PaymentMethod, Serializable {
 	String name;
 	
 	public otherMethods(String name) {

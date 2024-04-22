@@ -10,7 +10,7 @@ public class Payment {
 	public static void showMethods(ArrayList<? extends PaymentMethod> paymentMethods) {
 		System.out.println("====== Payment Options ======");
 		for (int i = 0; i < paymentMethods.size(); i++) {
-			System.out.println("|" + i+1 + ". " + paymentMethods.get(i).getName());
+			System.out.println("|" + (i+1) + ". " + paymentMethods.get(i).getName());
 		}
 		System.out.println("=============================");
 	}
@@ -103,7 +103,7 @@ public class Payment {
 	}
 	
 	
-	public void removeMethod(ArrayList<PaymentMethod> paymentMethods) {
+	public static void removeMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
 		showMethods(paymentMethods);
@@ -125,7 +125,7 @@ public class Payment {
 	}
 	
 	
-	public void pay(ArrayList<PaymentMethod> paymentMethods) {
+	public static void pay(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 
 		showMethods(paymentMethods);
@@ -140,7 +140,7 @@ public class Payment {
 			if (paymentType > paymentMethods.size() || paymentType < 1)
 				System.out.println("Invalid input!");
 			else {
-				paymentMethods.get(paymentType).process();
+				paymentMethods.get(paymentType-1).process();
 			}
 		} while (paymentType > paymentMethods.size() || paymentType < 1);
 	}

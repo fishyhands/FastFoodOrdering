@@ -3,6 +3,7 @@ package Menu;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+    
 
 import Branch.Branch;
 import Database.Database;
@@ -46,7 +47,7 @@ public class MenuBrowsing {
             int choiceMainMenu = scanner.nextInt();
             switch (choiceMainMenu) {
                 case 1:
-                    ChoiceMenu.chooseItems(branchMenu.getFirst());//Set Meals
+                    ChoiceMenu.chooseItems(branchMenu.get(0));//Set Meals
                     break;
                 case 2:
                     ChoiceMenu.chooseItems(branchMenu.get(1)); //Burger
@@ -58,10 +59,11 @@ public class MenuBrowsing {
                     ChoiceMenu.chooseItems(branchMenu.get(3)); // Drink
                     break;
                 case 5:
-                    ChoiceMenu.chooseItems(branchMenu.getLast());// Others
+                    ChoiceMenu.chooseItems(branchMenu.get(branchMenu.size()-1));// Others
                     break;
                 case 0:
                     exit = true;
+                    System.out.println(order);
                     break;
 
                 default:
