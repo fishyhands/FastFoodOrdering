@@ -11,6 +11,7 @@ import Login.Validate;
 import Menu.MenuBrowsing;
 import Payment.PaymentMainMenu;
 
+import static Menu.MenuBrowsing.order;
 
 public class OrderMainMenu {
     private static void displayMainMenu(){
@@ -44,8 +45,7 @@ public class OrderMainMenu {
                     String branchName = branches.get(branchOption - 1).getBranchName();
                     //call menu
                     MenuBrowsing.run(branchName);
-                    PaymentMainMenu.PaymentMenu(paymentMethods);
-                    
+                    PaymentMainMenu.PaymentMenu(paymentMethods);                    
 
                 case 2:
                     boolean quit = false;
