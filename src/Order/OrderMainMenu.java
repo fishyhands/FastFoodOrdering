@@ -9,6 +9,7 @@ import Branch.BranchList;
 import Database.Database;
 import Login.Validate;
 import Menu.MenuBrowsing;
+import Payment.PaymentMainMenu;
 
 
 public class OrderMainMenu {
@@ -19,12 +20,13 @@ public class OrderMainMenu {
         System.out.println("2. Check Order");
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
 
         ArrayList<Branch> branches = Database.readBranchList();
         ArrayList<Order> orderList = Database.readOrderList();
+        ArrayList paymentMethods = Database.readPaymentMethods();
 
         while (!exit) {
             displayMainMenu();
@@ -42,6 +44,8 @@ public class OrderMainMenu {
                     String branchName = branches.get(branchOption - 1).getBranchName();
                     //call menu
                     MenuBrowsing.run(branchName);
+                    PaymentMainMenu.PaymentMenu(paymentMethods);
+                    
 
                 case 2:
                     boolean quit = false;
@@ -50,6 +54,7 @@ public class OrderMainMenu {
                         System.out.println("Please enter your order ID: ");
                         int orderID = scanner.nextInt();
                         Order order = Validate.validateOrder(orderList,orderID);
+                        //getting stuck in a loop here. order is always null
                         if (order != null){
                             System.out.println("Order ID:\t" + order.getOrderID() + "\n"
                                                 + "Branch:\t" + order.getBranch() + "\n"
