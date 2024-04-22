@@ -183,12 +183,13 @@ public class Database {
     }
 
 
-    public static void readPaymentMethods() throws IOException, ClassNotFoundException{
+    public static ArrayList readPaymentMethods() throws IOException, ClassNotFoundException{
         ArrayList paymentMethods = null;
         FileInputStream fileIn = new FileInputStream(filePath(PAYMENTLIST));
         ObjectInputStream objectIn = new ObjectInputStream(fileIn);
         paymentMethods = (ArrayList) objectIn.readObject();
         objectIn.close();
+        return paymentMethods;
     }
 
     public static void writePaymentMethods(ArrayList paymentMethods) throws IOException{
