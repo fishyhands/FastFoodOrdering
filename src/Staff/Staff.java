@@ -1,5 +1,7 @@
 package Staff;
 
+import java.io.IOException;
+
 public class Staff {
 
     private String staffName;
@@ -43,4 +45,8 @@ public class Staff {
     public void setAge(int age) {this.age = age;}
     public void setBranch(String branch) {this.branch = branch;}
 
+    //menu
+    public void staffMenu() throws IOException {
+    	StaffMainMenu.mainMenu(this);
+    }
 }

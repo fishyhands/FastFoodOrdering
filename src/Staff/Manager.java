@@ -37,4 +37,9 @@ public class Manager extends Staff{
 			}
 		}
 	}
+
+	//menu
+    public void staffMenu() throws IOException {
+    	ManagerMainMenu.mainMenu(this);
+    }
 }

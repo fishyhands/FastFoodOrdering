@@ -10,6 +10,7 @@ import Database.Database;
 import Login.Validate;
 import Menu.MenuBrowsing;
 import Payment.PaymentMainMenu;
+import Payment.PaymentMethod;
 
 import static Menu.MenuBrowsing.order;
 
@@ -27,7 +28,7 @@ public class OrderMainMenu {
 
         ArrayList<Branch> branches = Database.readBranchList();
         ArrayList<Order> orderList = Database.readOrderList();
-        ArrayList paymentMethods = Database.readPaymentMethods();
+        ArrayList<PaymentMethod> paymentMethods = Database.readPaymentMethods();
 
         while (!exit) {
             displayMainMenu();

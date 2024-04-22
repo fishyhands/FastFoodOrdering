@@ -1,6 +1,7 @@
 package Staff;
 
 import Branch.Branch;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -141,5 +142,10 @@ public class Admin {
             }
         }
         return count;
+    }
+
+  //menu
+    public void staffMenu() throws IOException {
+    	AdminMainMenu.mainMenu(this);
     }
 }
