@@ -3,7 +3,6 @@ package Order;
 import java.util.Timer;
 import java.util.TimerTask;
 import Database.Database;
-import Order.Order;
 
 public class OrderTimer {
     private Timer timer;
