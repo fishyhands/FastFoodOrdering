@@ -1,4 +1,4 @@
-package Payment.Order;
+package Order;
 
 import java.util.Timer;
 import java.util.TimerTask;
