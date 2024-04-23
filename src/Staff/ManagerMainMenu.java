@@ -47,11 +47,13 @@ public class ManagerMainMenu {
 			 }    
 			 else if (staffchoice == 6) {
 				 System.out.println("Enter name of item to edit:");
+				 sc.nextLine();
 				 String itemlabel = sc.nextLine();				 
 				 menuList = staff.removeItem(itemlabel, menuList);
 			 }   
 			 else if (staffchoice == 7) {
 				 System.out.println("Enter item name:");
+				 sc.nextLine();
 				 String itemName = sc.nextLine();
 				 System.out.println("Enter new price:");
 				 float newPrice = sc.nextFloat();
@@ -59,11 +61,13 @@ public class ManagerMainMenu {
 			 }
 			 else if (staffchoice == 8) {
 				 System.out.println("Enter item name:");
+				 sc.nextLine();
 				 String itemName = sc.nextLine();
 				 menuList = staff.updateAvailability(itemName,menuList);
 			 }
 			 else if (staffchoice == 9) {
 			     System.out.println("Enter new password");
+				sc.nextLine();
 			     String pwd = sc.nextLine();
 			     staff.setPassword(pwd);
 			 }
