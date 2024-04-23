@@ -56,21 +56,25 @@ public class Login {
                             Staff.BranchStaff loggedInBStaff = (Staff.BranchStaff) loggedInStaff;
                             Staff.BranchStaff staff = Staff.StaffMainMenu.mainMenu(loggedInBStaff);
                             staffList.add(staff);
+                            Database.writeStaffList(staffList);
                         }
                         case "M" -> {
                             Staff.Manager loggedInMan = (Staff.Manager) loggedInStaff;
                             Staff.Manager manager = Staff.ManagerMainMenu.mainMenu(loggedInMan);
                             staffList.add(manager);
+                            Database.writeStaffList(staffList);
                         }
                         case "A" -> {
                             Staff.Admin loggedInAd = (Staff.Admin) loggedInStaff;
                             Staff.Admin admin = Staff.AdminMainMenu.mainMenu(loggedInAd);
                             staffList.add(admin);
+                            Database.writeStaffList(staffList);
                         }
                         default -> throw new UnknownStaffRoleException("Unknown Staff Role");
                     }
                     }
                 }
+
 
         } catch (UnknownStaffRoleException ex) {
             System.out.println("UnknownStaffRoleException: " + ex.getMessage());

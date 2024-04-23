@@ -9,6 +9,9 @@ import Branch.Branch;
 import Payment.Payment;
 import Payment.PaymentMethod;
 import Database.Database;
+import Order.Order;
+import Order.OrderTimer;
+
 
 public class AdminMainMenu {
 	public static Admin mainMenu(Admin staff) throws IOException, ClassNotFoundException {
@@ -17,8 +20,11 @@ public class AdminMainMenu {
 		ArrayList<Staff> staffList = Database.readStaffList();
 		ArrayList<Branch> branchList = Database.readBranchList();
 		ArrayList<PaymentMethod> paymentList = Database.readPaymentMethods();
+		ArrayList<Order> orderListUn = Database.readOrderList();
+		ArrayList<Order> orderList;
 
 		do {
+			orderList = OrderTimer.timerOrder(orderListUn);
 	        System.out.println("Enter 1 to add staff account,\n 2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to change password, \n12 to logout");
 	        staffchoice = sc.nextInt(); // non int error
 	        if (staffchoice == 1) { //some possible exceptions here
@@ -141,6 +147,10 @@ public class AdminMainMenu {
 	            System.out.println("Invalid option");
 	        }
 		} while (staffchoice != 12);
+		Database.writeStaffList(staffList);
+		Database.writeBranchList(branchList);
+		Database.writeOrderList(orderList);
+		Database.writePaymentMethods(paymentList);
 		return staff;
 	}
 }

@@ -7,16 +7,19 @@ import java.util.Scanner;
 import Database.Database;
 import Menu.Menu;
 import Order.Order;
+import Order.OrderTimer;
 
 public class ManagerMainMenu {
 	public static Manager mainMenu(Manager staff) throws IOException {
 		ArrayList<Staff> staffList = Database.readStaffList();
 		ArrayList<Menu> menuList = Database.readMenuList();
-		ArrayList<Order> orderList = Database.readOrderList();
+		ArrayList<Order> orderListUn = Database.readOrderList();
+		ArrayList<Order> orderList;
 
 		Scanner sc = new Scanner(System.in);
 		int staffchoice;
 		do {
+			orderList = OrderTimer.timerOrder(orderListUn);
 			System.out.println("Enter 1 to display new orders, 2 to view the details of a particular order, 3 to process order, 4 to display branch staff list, 5 to add menu item, 6 to remove menu item, 7 to update item price, 8 to update item availability, 9 to change password, 10 to logout");
 			 staffchoice = sc.nextInt(); // non int error
 			 if (staffchoice == 1) {

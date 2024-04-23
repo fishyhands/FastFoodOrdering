@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.time.LocalTime;
 
 public class Order {
     private int orderID;
@@ -19,6 +20,8 @@ public class Order {
     private boolean takeaway;
     private HashMap<String, Integer> cart;
     private float totalSum;
+    private LocalTime time;
+
 
     public Order(int orderID, String branch, boolean paid, Order_Status status, boolean takeaway, HashMap<String, Integer> cart, float totalSum) {
         this.orderID = orderID;
@@ -28,7 +31,10 @@ public class Order {
         this.takeaway = takeaway;
         this.cart = cart;
         this.totalSum = totalSum;
+        this.time = LocalTime.now();
     }
+
+    public LocalTime getTime(){return this.time;}
 
     public int getOrderID() {
         return orderID;

@@ -28,10 +28,12 @@ public class OrderMainMenu {
         boolean exit = false;
 
         ArrayList<Branch> branches = Database.readBranchList();
-        ArrayList<Order> orderList = Database.readOrderList();
+        ArrayList<Order> orderListUn = Database.readOrderList(); // Have not removed the Orders that have expired
         ArrayList<PaymentMethod> paymentMethods = Database.readPaymentMethods();
-
+        ArrayList<Order> orderList = new ArrayList<>();
+        Order newOrder;
         while (!exit) {
+            orderList = OrderTimer.timerOrder(orderListUn);
             displayMainMenu();
             int choiceMainMenu = scanner.nextInt();
             switch (choiceMainMenu) {
@@ -46,8 +48,10 @@ public class OrderMainMenu {
                     }
                     String branchName = branches.get(branchOption - 1).getBranchName();
                     //call menu
-                    MenuBrowsing.run(branchName);
-                    PaymentMainMenu.PaymentMenu(paymentMethods);                    
+                    newOrder= MenuBrowsing.run(branchName);
+                    orderList.add(newOrder);
+                    PaymentMainMenu.PaymentMenu(paymentMethods);
+                    Database.writeOrderList(orderList);
 
                 case 2:
                     boolean quit = false;

@@ -22,7 +22,7 @@ public class MenuBrowsing {
     }
 
 
-    public static void run(String branchName) throws IOException {
+    public static Order run(String branchName) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         order = CreateOrder.createOrder(branchName);
@@ -60,6 +60,8 @@ public class MenuBrowsing {
                     System.out.println("Error, Wrong Choice please try again");
                     break;
             }
+
         }
+        return order;
     }
 }

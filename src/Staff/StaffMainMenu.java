@@ -10,10 +10,12 @@ import java.util.Scanner;
 
 public class StaffMainMenu{
     public static BranchStaff mainMenu(BranchStaff staff)  throws IOException {
-        ArrayList<Order> orderList= Database.readOrderList();
+        ArrayList<Order> orderListUn= Database.readOrderList();
+        ArrayList<Order> orderList;
         Scanner sc = new Scanner(System.in);
         int staffchoice;
         do {
+            orderList = OrderTimer.timerOrder(orderListUn);
             System.out.println("Enter 1 to display new orders\n2 to view the details of a particular order\n3 to process order\n4 to change password\n5 to logout");
             staffchoice = sc.nextInt(); // non int error
             if (staffchoice == 1) {
@@ -41,10 +43,4 @@ public class StaffMainMenu{
         return staff;
     }
 
-    private static void startTimer(Order order, ArrayList<Order> orderList){
-        if(order.getStatus().equals("READY")){
-            OrderTimer orderTimer = new OrderTimer(order, orderList);
-            orderTimer.startTimer();
-        }
-    }
 }
