@@ -36,10 +36,12 @@ public class ManagerMainMenu {
 			 }    
 			 else if (staffchoice == 5) {
 				 System.out.println("Enter item name:");
+				 sc.nextLine();
 				 String itemName = sc.nextLine();
 				 System.out.println("Enter price:");
 				 float price = sc.nextFloat();
 				 System.out.println("Enter category:");
+				 sc.nextLine();
 				 String category = sc.nextLine();
 				 menuList = staff.addItem(itemName, price, category, true, menuList);
 			 }    
