@@ -14,16 +14,6 @@ public class MenuBrowsing {
     public static String branchName;
     public static Order order;
 
-    static {
-        try {
-            order = CreateOrder.createOrder(branchName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    ;
-
     private static void displayMenuBrowsing(ArrayList<Menu> menuList, String branchName) throws IOException {
         ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(menuList,branchName);
         System.out.println("Browsing Menu at:\t" + branchName);
@@ -35,10 +25,10 @@ public class MenuBrowsing {
     public static void run(String branchName) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
-
+        order = CreateOrder.createOrder(branchName);
         ArrayList<Menu> menuList = Database.readMenuList();
         ArrayList<Order> orderList = Database.readOrderList();
-        ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(menuList, branchName) ;
+        ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(menuList, branchName);
 
         while (!exit) {
             displayMenuBrowsing(menuList, branchName);

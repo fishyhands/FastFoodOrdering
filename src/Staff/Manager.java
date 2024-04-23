@@ -1,12 +1,13 @@
 package Staff;
 
-import Database.Database;
+
 import Menu.Menu;
+import Order.Order;
 
 import java.io.IOException;
 import java.util.*;
 
-public class Manager extends Staff{
+public class Manager extends BranchStaff {
 
     // Constructor
     public Manager(String staffName, String loginID, String staffPassword, String role, String gender, int age, String branch) {
@@ -15,31 +16,73 @@ public class Manager extends Staff{
 
     
 	//Add, edit, or remove menu items, price, and availability. The menu items and prices might vary among branches.
-	public void addItem(String itemName, float price, String category, boolean available, ArrayList<Menu> branchMenu) {
+	public ArrayList<Menu> addItem(String itemName, float price, String category, boolean available, ArrayList<Menu> menuList) {
         Menu newItem = new Menu(itemName,price,this.getBranch(), category, available);
-        branchMenu.add(newItem);
+        menuList.add(newItem);
+        displayBranchMenu(menuList);
+        return menuList;
 	}
 	
-	public void removeItem(String itemName, ArrayList<Menu> branchMenu) {
-        for (Menu o: branchMenu){
-            if (Objects.equals(o.getName(),itemName)){
-                branchMenu.remove(o);
+	public ArrayList<Menu> removeItem(String itemName, ArrayList<Menu> menuList) {
+        boolean found = false;
+        displayBranchMenu(menuList);
+        for (Menu o: menuList){
+            if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
+                menuList.remove(o);
                 System.out.println(itemName + " removed");
+                found = true;
             }
         }
+        if (!found){
+            System.out.println("Item does not exist in this branch's menu");
+        }
+        return menuList;
 	}
 	
-	public void updatePrice(String itemName, float newPrice, ArrayList<Menu> branchMenu) {
-		for (Menu o: branchMenu){
-            if (Objects.equals(o.getName(),itemName)){
+	public ArrayList<Menu> updatePrice(String itemName, float newPrice, ArrayList<Menu> menuList) {
+        boolean found = false;
+        displayBranchMenu(menuList);
+		for (Menu o: menuList){
+            if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
 				o.setPrice(newPrice);
 				System.out.println(itemName + " price changed to $" + newPrice);
+                break;
 			}
 		}
+        if (!found){
+            System.out.println("Item does not exist in this branch's menu");
+        }
+        return menuList;
 	}
 
-	//menu
-    public void staffMenu() throws IOException {
-    	ManagerMainMenu.mainMenu(this);
+    public ArrayList<Menu> updateAvailability(String itemName, ArrayList<Menu> menuList){
+        boolean found = false;
+        displayBranchMenu(menuList);
+        for (Menu o: menuList){
+            if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
+                o.setAvailability(!o.isAvailable());
+                found = true;
+            }
+        }
+        if (!found){
+            System.out.println("Item does not exist in this branch's menu");
+        }
+        return menuList;
+    }
+
+    public void displayStaffList(ArrayList<Staff> staffList){
+        System.out.println("Staff in this branch: ");
+        for (Staff o: staffList){
+            if (o.getBranch().equals(this.getBranch())){
+                System.out.println(o.getStaffName());
+            }
+        }
+    }
+
+    private void displayBranchMenu(ArrayList<Menu> menuList){
+        for (Menu o: menuList){
+            if (o.getBranch().equals(this.getBranch()))
+                System.out.println(o.getName() + o.getCategory() + o.getPrice() + o.isAvailable());
+        }
     }
 }

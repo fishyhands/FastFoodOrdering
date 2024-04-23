@@ -1,8 +1,7 @@
-kumar Blackmore,kumarB,password,S,M,32,NTU
+Kumar Blackmore,kumarB,password,S,M,32,NTU
 Alexei,Alexei,password,M,M,25,NTU
 Tom Chan,TomC,password,M,M,56,JP
 Alica Ang,AlicaA,password,M,F,27,JE
-Mary lee,MaryL,password,S,F,44,JE
+Mary Lee,MaryL,password,S,F,44,JE
 Justin Loh,JustinL,password,S,M,49,JP
 Boss,boss,password,A,F,62,Admin
-

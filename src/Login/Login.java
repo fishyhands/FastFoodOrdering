@@ -3,14 +3,16 @@ package Login;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Database.Database;
+import Exceptions.UnknownStaffRoleException;
 import Order.OrderMainMenu;
-import Staff.Staff;
-import Staff.StaffMainMenu;
 
 
 public class Login {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args){
+        try{
         // TODO Auto-generated method stub
         // select customer or Staff
         Scanner sc = new Scanner(System.in);
@@ -31,16 +33,52 @@ public class Login {
                 OrderMainMenu.main(null);
                 break;
             case 2:
-            	System.out.println("Enter username");
-                String loginID = sc.nextLine();
+            	ArrayList<Staff.Staff> staffList = Database.readStaffList();
+                System.out.println("Enter username");
+                String loginID = sc.next().trim();
+
+                // Wait for the user to press Enter before prompting for the password
+                System.out.println("Press Enter to continue...");
+                sc.nextLine();
+
                 System.out.println("Enter password");
-                String password = sc.nextLine();
-            	Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password); // get staffList from backend?
+                String password = sc.next().trim();
+
+
+            	Staff.Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password); // get staffList from backend?
             	if (loggedInStaff == null) {
             		System.out.println("Invalid login credentials!");
             	}
-            	else loggedInStaff.staffMenu();
-                break;
+            	else{
+                    staffList.remove(loggedInStaff);
+                    switch (loggedInStaff.getRole()) {
+                        case "S" -> {
+                            Staff.BranchStaff loggedInBStaff = (Staff.BranchStaff) loggedInStaff;
+                            Staff.BranchStaff staff = Staff.StaffMainMenu.mainMenu(loggedInBStaff);
+                            staffList.add(staff);
+                        }
+                        case "M" -> {
+                            Staff.Manager loggedInMan = (Staff.Manager) loggedInStaff;
+                            Staff.Manager manager = Staff.ManagerMainMenu.mainMenu(loggedInMan);
+                            staffList.add(manager);
+                        }
+                        case "A" -> {
+                            Staff.Admin loggedInAd = (Staff.Admin) loggedInStaff;
+                            Staff.Admin admin = Staff.AdminMainMenu.mainMenu(loggedInAd);
+                            staffList.add(admin);
+                        }
+                        default -> throw new UnknownStaffRoleException("Unknown Staff Role");
+                    }
+                    }
+                }
+
+        } catch (UnknownStaffRoleException ex) {
+            System.out.println("UnknownStaffRoleException: " + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("IOException: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println("ClassNotFoundException: " + ex.getMessage());
         }
+
     }
 }

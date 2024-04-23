@@ -16,7 +16,7 @@ public class Payment {
 	}
 	
 	
-	public static void addMethod(ArrayList<PaymentMethod> paymentMethods) {
+	public static ArrayList<PaymentMethod> addMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
 		showMethods(paymentMethods);
@@ -100,10 +100,11 @@ public class Payment {
 					System.out.println("Invalid choice!");
 			}
 		} while (choice < 1 || choice > paymentMethods.size());
+		return paymentMethods;
 	}
 	
 	
-	public static void removeMethod(ArrayList<PaymentMethod> paymentMethods) {
+	public static ArrayList<PaymentMethod> removeMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
 		showMethods(paymentMethods);
@@ -121,7 +122,8 @@ public class Payment {
 				paymentMethods.remove(choice-1);
 				showMethods(paymentMethods);
 			}
-		} while (choice < 1 || choice > size);	
+		} while (choice < 1 || choice > size);
+		return paymentMethods;
 	}
 	
 	

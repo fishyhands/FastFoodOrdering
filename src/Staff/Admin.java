@@ -1,12 +1,14 @@
 package Staff;
 
 import Branch.Branch;
+import Payment.PaymentMethod;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class Admin {
+public class Admin extends Staff {
     private String name;
     private String loginID;
     private String password;
@@ -16,36 +18,33 @@ public class Admin {
     private String branch;
 
     public Admin(String name, String loginID, String password, String adminRole, String gender, int age, String branch){
-        this.name = name;
-        this.loginID = loginID;
-        this.password = password;
-        this.adminRole = adminRole;
-        this.gender = gender;
-        this.age = age;
-        this.branch = branch;
+        super(name, loginID, password, adminRole, gender, age, branch);
+
     }
 
     public void setPassword(String password) {this.password = password;}
 
 
-    public void addStaff(String name, String id, String password, String role, String gender, int age, String branch, ArrayList<Staff> staffList){
-        Staff newStaff = new Staff(name,id,password,role,gender,age,branch);
+    public ArrayList<Staff> addStaff(String name, String id, String password, String role, String gender, int age, String branch, ArrayList<Staff> staffList){
+    	BranchStaff newStaff = new BranchStaff(name,id,password,role,gender,age,branch);
         staffList.add(newStaff);
         System.out.println("New Staff " + name + " added");
+        return staffList;
     }
 
-    public void removeStaff(Staff staff, ArrayList<Staff> staffList){
+    public ArrayList<Staff> removeStaff(Staff staff, ArrayList<Staff> staffList){
         for (Staff o: staffList){
             if (o.equals(staff)){
                 staffList.remove(staff);
                 System.out.println(staff.getStaffName() + " removed");
-                break;
+                return staffList;
             }
-            else{System.out.println("Error:\nStaff not found");}
         }
+        System.out.println("Error:\nStaff not found");
+        return staffList;
     }
 
-    public void editStaff(int choice, Staff staff, ArrayList<Staff> staffList){
+    public ArrayList<Staff> editStaff(int choice, Staff staff, ArrayList<Staff> staffList){
         Scanner sc = new Scanner(System.in);
         for (Staff o:staffList){
             if (o.equals(staff)){
@@ -64,7 +63,11 @@ public class Admin {
                         System.out.println("Editing Staff Role");
                         System.out.print("Please write new role: ");
                         String newRole = sc.next();
-                        o.setRole(newRole);
+                        if (Objects.equals(newRole, "M") || (Objects.equals(newRole,"S"))){
+                            o.setRole(newRole);
+                        }else{
+                            System.out.println("Role does not exist");
+                        }
                     case 4:
                         System.out.println("Editing Staff Gender");
                         System.out.print("Please write new gender: ");
@@ -87,9 +90,10 @@ public class Admin {
             }
             else{System.out.println("Error:\nStaff not found");}
         }
+        return staffList;
     }
 
-    public void changeBranchStatus(Branch branch, ArrayList<Branch> branchList) {
+    public ArrayList<Branch> changeBranchStatus(Branch branch, ArrayList<Branch> branchList) {
         for (Branch o : branchList) {
             if (Objects.equals(o, branch)) {
                 if (o.getOpenOrClose()) {
@@ -99,11 +103,11 @@ public class Admin {
                     o.setOpenOrClose(true);
                     System.out.println(o.getBranchName() + " is now OPEN");
                 }
-                break;
-            } else {
-                System.out.println("Error:\nBranch does not exist");
+                return  branchList;
             }
         }
+        System.out.println("Error:\nBranch does not exist");
+        return  branchList;
     }
 
     public void assignManager(ArrayList<Branch> branchList, ArrayList<Staff> staffList){
@@ -142,10 +146,5 @@ public class Admin {
             }
         }
         return count;
-    }
-
-  //menu
-    public void staffMenu() throws IOException {
-    	AdminMainMenu.mainMenu(this);
     }
 }

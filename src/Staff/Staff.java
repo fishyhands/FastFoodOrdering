@@ -1,8 +1,10 @@
 package Staff;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import Order.Order;
 
-public class Staff {
+public abstract class Staff {
 
     private String staffName;
     private String loginID;
@@ -45,8 +47,7 @@ public class Staff {
     public void setAge(int age) {this.age = age;}
     public void setBranch(String branch) {this.branch = branch;}
 
-    //menu
-    public void staffMenu() throws IOException {
-    	StaffMainMenu.mainMenu(this);
+
+    public void staffMenu(ArrayList... databaseLists) {
     }
 }

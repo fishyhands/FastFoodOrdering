@@ -76,6 +76,6 @@ public class OrderMainMenu {
         }
         scanner.close();
         Database.writeBranchList(branches);
-
+        Database.writeOrderList(orderList);
     }
 }

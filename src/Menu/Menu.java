@@ -42,8 +42,5 @@ public class Menu {
     public void setAvailability(boolean availability) {this.availability = availability;}
 
 
-    //display method
-    //public String toString() {
-       // return (name + ": $" + price + " [" + (availability ? "Available " : "Not Available") + "]");
-   // }
+
 }

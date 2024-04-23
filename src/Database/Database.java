@@ -5,6 +5,9 @@ import java.net.URL;
 import java.util.*;
 
 import Branch.Branch;
+import Staff.Admin;
+import Staff.BranchStaff;
+import Staff.Manager;
 import Staff.Staff;
 import Menu.Menu;
 import Order.Order;
@@ -57,7 +60,6 @@ public class Database {
         ArrayList<Staff> alr = new ArrayList<>();
         for (String o : stringArray) {
             StringTokenizer star = new StringTokenizer(o, SEPARATOR);
-
             String name = star.nextToken().trim();
             String loginID = star.nextToken().trim();
             String password = star.nextToken().trim();
@@ -65,11 +67,15 @@ public class Database {
             String gender = star.nextToken().trim();
             int age = Integer.parseInt(star.nextToken().trim());
             String branch = star.nextToken().trim();
-            Staff staff = new Staff(name, loginID, password, role, gender, age, branch);
-            alr.add(staff);
+            if (role.equals("S")) {alr.add(new BranchStaff(name, loginID, password, role, gender, age, branch));}
+            else if (role.equals("M")) {alr.add(new Manager(name, loginID, password, role, gender, age, branch));}
+            else {alr.add(new Admin(name, loginID, password, role, gender, age, branch));}
+
         }
         return alr;
     }
+
+
 
     public static void writeStaffList(ArrayList<Staff> staffList) throws IOException {
         ArrayList<String> alw = new ArrayList<>();
@@ -226,7 +232,6 @@ public class Database {
 
     private static String filePath(String fileName){
         URL url = Database.class.getResource(fileName);
-        System.out.println(url);
         assert url != null;
         return url.getPath();
     }
