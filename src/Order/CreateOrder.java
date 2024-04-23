@@ -4,6 +4,7 @@ package Order;
 import Database.Database;
 
 import java.io.IOException;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -35,6 +36,6 @@ public class CreateOrder {
             default:
                 System.out.println("Wrong entry. Please enter again");
         }
-        return new Order(orderID, branch, false, Order_Status.PENDING, takeaway, cart, 0);
+        return new Order(orderID, branch, false, Order_Status.PENDING, takeaway, cart, 0, LocalTime.now());
     }
 }

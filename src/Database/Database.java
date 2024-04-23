@@ -2,6 +2,7 @@ package Database;
 
 import java.io.*;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.*;
 
 import Branch.Branch;
@@ -154,7 +155,8 @@ public class Database {
                 cart.put(itemData[0], Integer.parseInt(itemData[1]));
             }
             float totalSum = Float.parseFloat(star.nextToken().trim());
-            Order order = new Order(orderID, branch, paid, order_status, takeaway, cart, totalSum);
+            LocalTime time = LocalTime.parse(star.nextToken());
+            Order order = new Order(orderID, branch, paid, order_status, takeaway, cart, totalSum,time);
             orderList.add(order);
         }
         return orderList;
@@ -183,6 +185,8 @@ public class Database {
             if(!cart.isEmpty()){
                 st.deleteCharAt(st.length() - 1);
             }
+            st.append(SEPARATOR);
+            st.append(o.getTime());
             alw.add(st.toString());
         }
         write(filePath(ORDERLIST), alw);

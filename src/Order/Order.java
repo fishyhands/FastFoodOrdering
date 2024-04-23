@@ -23,7 +23,7 @@ public class Order {
     private LocalTime time;
 
 
-    public Order(int orderID, String branch, boolean paid, Order_Status status, boolean takeaway, HashMap<String, Integer> cart, float totalSum) {
+    public Order(int orderID, String branch, boolean paid, Order_Status status, boolean takeaway, HashMap<String, Integer> cart, float totalSum, LocalTime time) {
         this.orderID = orderID;
         this.branch = branch;
         this.paid = paid;
@@ -31,7 +31,7 @@ public class Order {
         this.takeaway = takeaway;
         this.cart = cart;
         this.totalSum = totalSum;
-        this.time = LocalTime.now();
+        this.time = time;
     }
 
     public LocalTime getTime(){return this.time;}
