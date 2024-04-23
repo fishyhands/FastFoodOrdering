@@ -2,8 +2,10 @@ package Payment.Order;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import Database.Database;
+import Order.Order;
 
-public class Timer {
+public class OrderTimer {
     private Timer timer;
     private Order order;
 
@@ -33,8 +35,8 @@ public class Timer {
 
     //cancel the timer when status changes to completed
     public void removeTimer(){
-        if(timer != NULL){
-            timer.cancel;
+        if(timer != null){
+            timer.cancel();
         }
     }
 }
