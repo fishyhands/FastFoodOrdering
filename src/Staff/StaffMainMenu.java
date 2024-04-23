@@ -3,7 +3,7 @@ package Staff;
 import Database.Database;
 
 import Order.Order;
-import Payment.Order.OrderTimer;
+import Order.OrderTimer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
