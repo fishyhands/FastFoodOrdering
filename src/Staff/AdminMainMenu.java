@@ -22,18 +22,28 @@ public class AdminMainMenu {
 	        System.out.println("Enter 1 to add staff account,\n 2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to change password, \n12 to logout");
 	        staffchoice = sc.nextInt(); // non int error
 	        if (staffchoice == 1) { //some possible exceptions here
-	            System.out.println("Enter name"); 
-	            String name = sc.nextLine();
-	            System.out.println("Enter id"); 
-	            String loginID = sc.nextLine();
-	            System.out.println("Enter role"); 
-	            String role = sc.nextLine();
-	            System.out.println("Enter gender"); 
-	            String gender = sc.nextLine();
-	            System.out.println("Enter age"); 
+	            System.out.println("Enter name");
+	            String name = sc.next();
+				System.out.println("Press Enter to continue...");
+				sc.nextLine();
+	            System.out.println("Enter id");
+	            String loginID = sc.next();
+				System.out.println("Press Enter to continue...");
+				sc.nextLine();
+	            System.out.println("Enter role");
+	            String role = sc.next();
+				System.out.println("Press Enter to continue...");
+				sc.nextLine();
+	            System.out.println("Enter gender");
+	            String gender = sc.next();
+				System.out.println("Press Enter to continue...");
+				sc.nextLine();
+	            System.out.println("Enter age");
 	            int age = sc.nextInt();
+				System.out.println("Press Enter to continue...");
+				sc.nextLine();
 	            System.out.println("Enter branch"); 
-	            String branch = sc.nextLine();
+	            String branch = sc.next();
 	            staffList = staff.addStaff(name, loginID, "password", role, gender, age, branch, staffList);
 	        }
 	        else if (staffchoice == 2) {

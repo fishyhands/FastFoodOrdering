@@ -50,6 +50,10 @@ public class OrderMainMenu {
 
                 case 2:
                     boolean quit = false;
+                    if (orderList.isEmpty()){
+                        System.out.println("There are currently no orders");
+                        break;
+                    }
                     while (!quit){
                         // call orderList
                         System.out.println("Please enter your order ID: ");
