@@ -1,15 +1,17 @@
 package Order;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 import Database.Database;
 import Order.Order;
+import Staff.Staff;
+import Order.Order_Status;
 
 public class OrderTimer {
     private Timer timer;
-    private Order order;
 
-    public OrderTimer(Order order){
+    public OrderTimer(ArrayList<Order> order){
         this.order = order;
     }
 
@@ -17,10 +19,10 @@ public class OrderTimer {
         timer = new Timer();
         timer.schedule(new TimerTask(){
             public void run(){
-                if(order.getStatus().equals("READY")){
+                if(order.getStatus().equals(READY)){
                     System.out.println("Deleting Order" + order.getOrderID());
                     //remove order
-                    Database.removeOrder(order.getOrderID());
+                    order.remove(order.getOrderID());
                 }
             }
         }, 60000); // 1 min timer
@@ -28,7 +30,7 @@ public class OrderTimer {
 
     //if status complete, stop timer
     public void cancelTimerCompleted(){
-        if(order.getStatus().equals("COMPLETE")){
+        if(order.getStatus().equals(COMPLETE)){
             removeTimer();
         }
     }

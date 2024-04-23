@@ -7,7 +7,7 @@ import Order.OrderTimer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-//jdjdiodej
+
 public class StaffMainMenu{
     public static BranchStaff mainMenu(BranchStaff staff)  throws IOException {
         ArrayList<Order> orderList= Database.readOrderList();
@@ -41,7 +41,7 @@ public class StaffMainMenu{
         return staff;
     }
 
-    private static void startTimer(Order order){
+    private static void startTimer(ArrayList<Order> order){
         if(order.getStatus().equals("READY")){
             OrderTimer orderTimer = new OrderTimer(order);
             orderTimer.startTimer();
