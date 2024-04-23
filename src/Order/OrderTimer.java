@@ -15,7 +15,7 @@ public class OrderTimer {
 
     public void startTimer(){
         timer = new Timer();
-        timer.schedule(new TimerTask()){
+        timer.schedule(new TimerTask){
             public void run(){
                 if(order.getStatus().equals("READY")){
                     System.out.println("Deleting Order" + order.getOrderID());
