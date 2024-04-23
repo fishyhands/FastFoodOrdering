@@ -41,9 +41,9 @@ public class StaffMainMenu{
         return staff;
     }
 
-    private static void startTimer(ArrayList<Order> order){
+    private static void startTimer(Order order, ArrayList<Order> orderList){
         if(order.getStatus().equals("READY")){
-            OrderTimer orderTimer = new OrderTimer(order);
+            OrderTimer orderTimer = new OrderTimer(order, orderList);
             orderTimer.startTimer();
         }
     }
