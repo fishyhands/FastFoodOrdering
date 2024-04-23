@@ -20,6 +20,7 @@ public class OrderMainMenu {
         System.out.println("0. Back");
         System.out.println("1. Select Branch");
         System.out.println("2. Check Order");
+        System.out.println("3. Collect Order");
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -71,6 +72,11 @@ public class OrderMainMenu {
                             quit = true;
                         }
                     }
+                case 3:
+                    System.out.println("Enter Order ID for collection: ");
+                    int collectOrderID = scanner.nextInt();
+                    CollectOrder.collectReadyOrder(orderList, collectOrderID);
+                    break;
 
                 case 0:
                     exit = true;
