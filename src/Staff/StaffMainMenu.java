@@ -17,7 +17,7 @@ public class StaffMainMenu{
         do {
             orderList = OrderTimer.timerOrder(orderListUn);
             System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to change password\n\t5 to logout");
-            staffchoice = sc.nextInt(); // non int error
+            staffchoice = sc.nextInt(); 
             if (staffchoice == 1) {
                 staff.displayOrders(orderList);
             }
@@ -30,7 +30,7 @@ public class StaffMainMenu{
             else if (staffchoice == 3) {
                 orderList = staff.processOrder(orderList);
             }
-            else if (staffchoice == 4) { // maybe the input can be in the setPassword method too, then no need arguments
+            else if (staffchoice == 4) { 
             	System.out.println("Enter new password");
 				 String pwd = sc.next();
 				 sc.nextLine();

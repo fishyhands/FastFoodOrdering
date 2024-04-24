@@ -149,7 +149,7 @@ public class Admin extends Staff {
         return count;
     }
     
-    public void staffMenu() throws IOException, ClassNotFoundException, UnknownStaffRoleException {
-    	AdminMainMenu.mainMenu(this);
+    public Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
+    	return AdminMainMenu.mainMenu(this);
     }
 }

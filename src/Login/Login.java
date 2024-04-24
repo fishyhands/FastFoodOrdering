@@ -46,10 +46,11 @@ public class Login {
                     if (loggedInStaff == null) {
                         System.out.println("Invalid login credentials!");
                     }
-                    else {
-                    	staffList.remove(loggedInStaff);                                                
-                    	loggedInStaff.staffMenu();   
-                    	staffList.add(loggedInStaff);
+                    else {                    	                                               
+                    	Staff.Staff loggedOutStaff = loggedInStaff.staffMenu();   
+                    	staffList.remove(loggedInStaff); 
+                    	System.out.println(loggedOutStaff.getPassword());
+                    	staffList.add(loggedOutStaff);
                     	Database.writeStaffList(staffList);
                     }
                 }            

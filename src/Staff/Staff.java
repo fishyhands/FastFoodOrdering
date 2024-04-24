@@ -50,5 +50,5 @@ public abstract class Staff {
     public void setBranch(String branch) {this.branch = branch;}
 
 
-    public abstract void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException;
+    public abstract Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException;
 }

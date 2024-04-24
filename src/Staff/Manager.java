@@ -92,7 +92,7 @@ public class Manager extends BranchStaff {
         }
     }
     
-    public void staffMenu() throws IOException, UnknownStaffRoleException {
-    	ManagerMainMenu.mainMenu(this);
+    public Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
+    	return ManagerMainMenu.mainMenu(this);
     }
 }
