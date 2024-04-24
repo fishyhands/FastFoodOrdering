@@ -15,29 +15,38 @@ class CreditCard implements PaymentMethod, Serializable {
 
 	
 	public void process() {
-		long card_no;
-		String card_exp;
-		int card_cvv;
-		
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter card number: ");
-		card_no = sc.nextLong();
-		System.out.println("Enter card expiration date mm//yy: ");
-		card_exp = sc.next();
-		System.out.println("Enter CVV number: ");
-		card_cvv = sc.nextInt();
-		
-		//verify
-		System.out.println("Verifying card details...");
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while (true){
+			try{
+				long card_no;
+				String card_exp;
+				int card_cvv;
+
+				Scanner sc = new Scanner(System.in);
+				System.out.println("Enter card number: ");
+				card_no = sc.nextLong();
+				System.out.println("Enter card expiration date mm//yy: ");
+				card_exp = sc.next();
+				System.out.println("Enter CVV number: ");
+				card_cvv = sc.nextInt();
+
+				//verify
+				System.out.println("Verifying card details...");
+
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				System.out.println("Payment is successful.");
+				break;
+
+			}
+			catch (Exception e){
+				System.out.println("Please enter a valid input");
+			}
 		}
-		
-		System.out.println("Payment is successful.");
 	}
 }
 

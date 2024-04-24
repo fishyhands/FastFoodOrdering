@@ -26,15 +26,19 @@ public class Manager extends BranchStaff {
 	public ArrayList<Menu> removeItem(String itemName, ArrayList<Menu> menuList) {
         boolean found = false;
         displayBranchMenu(menuList);
+        Menu remove = null;
         for (Menu o: menuList){
             if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
-                menuList.remove(o);
+                remove = o;
                 System.out.println(itemName + " removed");
                 found = true;
+                break;
             }
         }
         if (!found){
             System.out.println("Item does not exist in this branch's menu");
+        }else{
+            menuList.remove(remove);
         }
         return menuList;
 	}
