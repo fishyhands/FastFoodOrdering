@@ -76,7 +76,7 @@ public class BranchStaff extends Staff {
         if (branchOrder.isEmpty()){
             System.out.println("There are currently no new Orders");
             return null;
-        }
+        }//
         else{
             Order order = null;
             while (order == null){
