@@ -2,6 +2,7 @@ package Menu;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
     
 
@@ -31,23 +32,29 @@ public class MenuBrowsing {
         ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(menuList, branchName);
 
         while (!exit) {
-            displayMenuBrowsing(menuList, branchName);
-            System.out.println("Enter 0 to exit the Menu and pay");
-            System.out.println("Please select which category you would like: ");
-            int choiceMainMenu = scanner.nextInt();
-            if (choiceMainMenu == 0) {
-            	exit = true;
-                float totalSum = order.calculateTotalSum();
-                System.out.println("Total: " + order.getTotalSum());
-            }
-            else if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
-            	System.out.println("Invalid choice, please try again");
-            }
-            else if (branchMenu.get(choiceMainMenu-1).size() <= 0) {
-            	System.out.println("No available items in that category, please pick another one");
-            }
-            else {
-            	ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu-1));
+            try{
+                displayMenuBrowsing(menuList, branchName);
+                System.out.println("Enter 0 to exit the Menu and pay");
+                System.out.println("Please select which category you would like: ");
+                int choiceMainMenu = scanner.nextInt();
+                if (choiceMainMenu == 0) {
+                        exit = true;
+                    float totalSum = order.calculateTotalSum();
+                    System.out.println("Total: " + order.getTotalSum());
+                }
+                else if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
+                    System.out.println("Invalid choice, please try again");
+                }
+                else if (branchMenu.get(choiceMainMenu-1).size() <= 0) {
+                    System.out.println("No available items in that category, please pick another one");
+                }
+                else {
+                    ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu-1));
+                }
+
+            }catch(InputMismatchException e){
+                System.out.println("Please enter a valid input");
+                scanner.nextLine();
             }
         }
     }
