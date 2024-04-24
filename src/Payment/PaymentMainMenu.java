@@ -1,7 +1,6 @@
 package Payment;
 
 import java.util.ArrayList;
-
 import static Menu.MenuBrowsing.order;
 
 
