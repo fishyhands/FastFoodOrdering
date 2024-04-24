@@ -38,10 +38,6 @@ public class Login {
                     System.out.println("Enter username");
                     String loginID = sc.next().trim();
 
-                    // Wait for the user to press Enter before prompting for the password
-                    System.out.println("Press Enter to continue...");
-                    sc.nextLine();
-
                     System.out.println("Enter password");
                     String password = sc.next().trim();
 
@@ -52,7 +48,7 @@ public class Login {
                     }
                     else {
                     	staffList.remove(loggedInStaff);                                                
-                    	loggedInStaff.staffMenu(null);   
+                    	loggedInStaff.staffMenu();   
                     	staffList.add(loggedInStaff);
                     	Database.writeStaffList(staffList);
                     }
