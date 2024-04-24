@@ -49,17 +49,16 @@ public class OrderMainMenu {
                     }
                     String branchName = branches.get(branchOption - 1).getBranchName();
                     //call menu
-                    newOrder= MenuBrowsing.run(branchName);
-                    if (!newOrder.getCart().isEmpty()) {
+                    MenuBrowsing.run(branchName);
+                    if (!order.getCart().isEmpty()) {
                         PaymentMainMenu.PaymentMenu(paymentMethods);
-                        orderList.add(newOrder);
+                        orderList.add(order);
                         Database.writeOrderList(orderList);
                         System.out.println("-----------------------");
-                        System.out.println("Your Order ID is: " + newOrder.getOrderID());
-                        System.out.println("Ordered at: " + newOrder.getTime());
+                        System.out.println("Your Order ID is: " + order.getOrderID());
+                        System.out.println("Ordered at: " + order.getTime());
                         System.out.println("-----------------------");
                     }
-                    order = null;
                     break;
                 case 2:
                     boolean quit = false;

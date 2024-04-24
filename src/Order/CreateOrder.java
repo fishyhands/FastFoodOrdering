@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class CreateOrder {
-
-    private static HashMap<String,Integer> cart = new HashMap<>();
-
+public class CreateOrder {    
     public static Order createOrder(String branch) throws IOException {
         ArrayList<Order> orderArrayList = Database.readOrderList();
         Scanner sc = new Scanner(System.in);
@@ -36,6 +33,7 @@ public class CreateOrder {
             default:
                 System.out.println("Wrong entry. Please enter again");
         }
+        HashMap<String,Integer> cart = new HashMap<>();
         return new Order(orderID, branch, false, Order_Status.PENDING, takeaway, cart, 0, LocalTime.now());
     }
 }
