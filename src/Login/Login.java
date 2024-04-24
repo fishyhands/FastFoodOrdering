@@ -72,6 +72,7 @@ public class Login {
                                 Database.writeStaffList(staffList);
                             }
                             default -> throw new UnknownStaffRoleException("Unknown Staff Role");
+
                         }
                     }
             }
