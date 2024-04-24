@@ -125,7 +125,7 @@ public class AdminMainMenu {
 	        }
 	        else if (staffchoice == 10) {
 	        	System.out.println("Enter branch name to change");
-	        	String branchName = sc.nextLine();
+	        	String branchName = sc.next();
 	        	Branch target = null;
 	        	for (Branch b : branchList) {
 	            	if (Objects.equals(b.getBranchName(), branchName)) {
