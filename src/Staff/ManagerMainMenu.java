@@ -39,12 +39,24 @@ public class ManagerMainMenu {
 				 System.out.println("Enter item name:");
 				 String itemName = sc.next();
 				 sc.nextLine();
-				 System.out.println("Enter price:");
-				 float price = sc.nextFloat();
-				 System.out.println("Enter category:");
-				 String category = sc.next();
-				 sc.nextLine();
-				 menuList = staff.addItem(itemName, price, category, true, menuList);
+				 //check if item already exists
+				 boolean itemDupe = false;
+				 for(Menu item: menuList){
+				 	if(item.getName().equalsIgnoreCase(itemName)){
+						itemDupe = true;
+						break;
+					 }
+				 }
+				 if(itemDupe) {
+					 System.out.println("Item with this name already exists.");
+				 }else {
+					 System.out.println("Enter price:");
+					 float price = sc.nextFloat();
+					 System.out.println("Enter category:");
+					 String category = sc.next();
+					 sc.nextLine();
+					 menuList = staff.addItem(itemName, price, category, true, menuList);
+				 }
 			 }    
 			 else if (staffchoice == 6) {
 				 System.out.println("Enter name of item to edit:");
