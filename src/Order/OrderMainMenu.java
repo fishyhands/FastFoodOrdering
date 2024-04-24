@@ -2,6 +2,7 @@ package Order;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Branch.Branch;
@@ -31,35 +32,49 @@ public class OrderMainMenu {
         ArrayList<Order> orderListUn = Database.readOrderList(); // Have not removed the Orders that have expired
         ArrayList<PaymentMethod> paymentMethods = Database.readPaymentMethods();
         ArrayList<Order> orderList = new ArrayList<>();
+        Order newOrder;
         while (!exit) {
             orderList = OrderTimer.timerOrder(orderListUn);
             displayMainMenu();
-            int choiceMainMenu = scanner.nextInt();
+            String choiceMainMenu = scanner.next();
             switch (choiceMainMenu) {
-                case 1:
+                case "1":
                     // Get Branch
-                	System.out.println("Select branch:");
-                    BranchList.displayBranches(branches);
-                    int numBranches = branches.size();
-                    int branchOption = scanner.nextInt();
-                    if (branchOption > numBranches){
-                        System.out.println("Enter a valid choice");
-                        continue;
-                    }
-                    String branchName = branches.get(branchOption - 1).getBranchName();
-                    //call menu
-                    MenuBrowsing.run(branchName);
-                    if (!order.getCart().isEmpty()) {
-                        PaymentMainMenu.PaymentMenu(paymentMethods);
-                        orderList.add(order);
-                        Database.writeOrderList(orderList);
-                        System.out.println("-----------------------");
-                        System.out.println("Your Order ID is: " + order.getOrderID());
-                        System.out.println("Ordered at: " + order.getTime());
-                        System.out.println("-----------------------");
+                    while (true){
+                        try{
+                            System.out.println("Select branch:");
+                            BranchList.displayBranches(branches);
+                            System.out.println("0. Back");
+                            int numBranches = branches.size();
+                            int branchOption = scanner.nextInt();
+                            if (branchOption > numBranches){
+                                System.out.println("Enter a valid choice");
+                                continue;
+                            }else if(branchOption == 0){
+                                break;
+                            }
+                            String branchName = branches.get(branchOption - 1).getBranchName();
+                            //call menu
+                            MenuBrowsing.run(branchName);
+                            if (!order.getCart().isEmpty()) {
+                                PaymentMainMenu.PaymentMenu(paymentMethods);
+                                orderList.add(order);
+                                Database.writeOrderList(orderList);
+                                System.out.println("-----------------------");
+                                System.out.println("Your Order ID is: " + order.getOrderID());
+                                System.out.println("Ordered at: " + order.getTime());
+                                System.out.println("-----------------------");
+                                break;
+                            }
+                            
+                        }catch(InputMismatchException e){
+                            System.out.println("Please enter a valid input");
+                            scanner.nextLine();
+                        }
                     }
                     break;
-                case 2:
+                    
+                case "2":
                     boolean quit = false;
                     if (orderList.isEmpty()){
                         System.out.println("There are currently no orders");
@@ -83,19 +98,22 @@ public class OrderMainMenu {
                         }
                     }
                     break;
-                case 3:
+                case "3":
                     System.out.println("Enter Order ID for collection: ");
                     int collectOrderID = scanner.nextInt();
                     CollectOrder.collectReadyOrder(orderList, collectOrderID);
                     break;
 
-                case 0:
+                case "0":
                     exit = true;
+                    break;
+
+                default:
+                    System.out.println("please enter a valid choice");
                     break;
 
             }
         }
-        scanner.close();
         Database.writeBranchList(branches);
         Database.writeOrderList(orderList);
     }

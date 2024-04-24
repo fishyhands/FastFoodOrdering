@@ -68,7 +68,7 @@ public class ManagerMainMenu {
 			 else if (staffchoice == 9) {
 			     System.out.println("Enter new password");
 				 String pwd = sc.next();
-				 sc.nextLine();
+				sc.nextLine();
 			     staff.setPassword(pwd);
 			 }
 			 else if (staffchoice == 10) {
