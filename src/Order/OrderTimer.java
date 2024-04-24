@@ -16,6 +16,7 @@ public class OrderTimer {
                 LocalTime orderTime = o.getTime();
                 Duration duration = Duration.between(orderTime, LocalTime.now());
                 if (duration.toSeconds() >= 120) {
+                    System.out.println("Order deleted: Time limit exceeded for order: " + o.getOrderID());
                     ordersToRemove.add(o); // Add order to remove list
                 }
             }
