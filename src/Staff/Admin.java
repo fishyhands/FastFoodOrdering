@@ -1,6 +1,7 @@
 package Staff;
 
 import Branch.Branch;
+import Exceptions.UnknownStaffRoleException;
 import Payment.PaymentMethod;
 
 import java.io.IOException;
@@ -146,5 +147,9 @@ public class Admin extends Staff {
             }
         }
         return count;
+    }
+    
+    public void staffMenu() throws IOException, ClassNotFoundException, UnknownStaffRoleException {
+    	AdminMainMenu.mainMenu(this);
     }
 }

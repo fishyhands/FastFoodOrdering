@@ -7,6 +7,8 @@ import Order.Order;
 import java.io.IOException;
 import java.util.*;
 
+import Exceptions.UnknownStaffRoleException;
+
 public class Manager extends BranchStaff {
 
     // Constructor
@@ -83,10 +85,14 @@ public class Manager extends BranchStaff {
         }
     }
 
-    private void displayBranchMenu(ArrayList<Menu> menuList){
+    public void displayBranchMenu(ArrayList<Menu> menuList){
         for (Menu o: menuList){
             if (o.getBranch().equals(this.getBranch()))
                 System.out.println(o.getName() + o.getCategory() + o.getPrice() + o.isAvailable());
         }
+    }
+    
+    public void staffMenu() throws IOException, UnknownStaffRoleException {
+    	ManagerMainMenu.mainMenu(this);
     }
 }

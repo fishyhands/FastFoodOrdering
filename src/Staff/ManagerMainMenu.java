@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Database.Database;
+import Exceptions.UnknownStaffRoleException;
 import Menu.Menu;
 import Order.Order;
 import Order.OrderTimer;
 
 public class ManagerMainMenu {
-	public static Manager mainMenu(Manager staff) throws IOException {
+	public static Manager mainMenu(Manager staff) throws IOException, UnknownStaffRoleException {
 		ArrayList<Staff> staffList = Database.readStaffList();
 		ArrayList<Menu> menuList = Database.readMenuList();
 		ArrayList<Order> orderListUn = Database.readOrderList();

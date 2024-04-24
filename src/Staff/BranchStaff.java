@@ -3,8 +3,11 @@ package Staff;
 import Order.Order;
 import Order.Order_Status;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Exceptions.UnknownStaffRoleException;
 
 public class BranchStaff extends Staff {
 	
@@ -103,4 +106,7 @@ public class BranchStaff extends Staff {
         return orderList;
     }
 
+    public void staffMenu() throws IOException, UnknownStaffRoleException {
+    	StaffMainMenu.mainMenu(this);
+    }
 }

@@ -9,12 +9,13 @@ import Branch.Branch;
 import Payment.Payment;
 import Payment.PaymentMethod;
 import Database.Database;
+import Exceptions.UnknownStaffRoleException;
 import Order.Order;
 import Order.OrderTimer;
 
 
 public class AdminMainMenu {
-	public static Admin mainMenu(Admin staff) throws IOException, ClassNotFoundException {
+	public static Admin mainMenu(Admin staff) throws IOException, ClassNotFoundException, UnknownStaffRoleException {
 		Scanner sc = new Scanner(System.in);
 		int staffchoice;
 		ArrayList<Staff> staffList = Database.readStaffList();

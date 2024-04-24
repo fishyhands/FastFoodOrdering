@@ -14,7 +14,7 @@ public class Login {
 
     public static void main(String[] args){
         while (true){
-            try{
+            try {
             // TODO Auto-generated method stub
             // select customer or Staff
             Scanner sc = new Scanner(System.in);
@@ -46,38 +46,16 @@ public class Login {
                     String password = sc.next().trim();
 
 
-                    Staff.Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password); // get staffList from backend?
+                    Staff.Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password); 
                     if (loggedInStaff == null) {
                         System.out.println("Invalid login credentials!");
                     }
-                    else{
-                        staffList.remove(loggedInStaff);
-                        switch (loggedInStaff.getRole()) {
-                            case "S" -> {
-                                Staff.BranchStaff loggedInBStaff = (Staff.BranchStaff) loggedInStaff;
-                                Staff.BranchStaff staff = Staff.StaffMainMenu.mainMenu(loggedInBStaff);
-                                staffList.add(staff);
-                                Database.writeStaffList(staffList);
-                            }
-                            case "M" -> {
-                                Staff.Manager loggedInMan = (Staff.Manager) loggedInStaff;
-                                Staff.Manager manager = Staff.ManagerMainMenu.mainMenu(loggedInMan);
-                                staffList.add(manager);
-                                Database.writeStaffList(staffList);
-                            }
-                            case "A" -> {
-                                Staff.Admin loggedInAd = (Staff.Admin) loggedInStaff;
-                                Staff.Admin admin = Staff.AdminMainMenu.mainMenu(loggedInAd);
-                                staffList.add(admin);
-                                Database.writeStaffList(staffList);
-                            }
-                            default -> throw new UnknownStaffRoleException("Unknown Staff Role");
-
-                        }
+                    else {
+                    	loggedInStaff.staffMenu(null);
+                        staffList.remove(loggedInStaff);                        
+                        Database.writeStaffList(staffList);                                                      
                     }
-            }
-
-
+                }            
 
             } catch (UnknownStaffRoleException ex) {
                 System.out.println("UnknownStaffRoleException: " + ex.getMessage());

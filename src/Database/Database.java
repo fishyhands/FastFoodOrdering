@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.*;
 
 import Branch.Branch;
+import Exceptions.UnknownStaffRoleException;
 import Staff.Admin;
 import Staff.BranchStaff;
 import Staff.Manager;
@@ -56,7 +57,7 @@ public class Database {
         write(filePath(BRANCHLIST), alw);
     }
 
-    public static ArrayList<Staff> readStaffList() throws IOException {
+    public static ArrayList<Staff> readStaffList() throws IOException, UnknownStaffRoleException {
         ArrayList<String> stringArray = (ArrayList) read(filePath(STAFFLIST));
         ArrayList<Staff> alr = new ArrayList<>();
         for (String o : stringArray) {
@@ -70,8 +71,8 @@ public class Database {
             String branch = star.nextToken().trim();
             if (role.equals("S")) {alr.add(new BranchStaff(name, loginID, password, role, gender, age, branch));}
             else if (role.equals("M")) {alr.add(new Manager(name, loginID, password, role, gender, age, branch));}
-            else {alr.add(new Admin(name, loginID, password, role, gender, age, branch));}
-
+            else if (role.equals("A")) {alr.add(new Admin(name, loginID, password, role, gender, age, branch));}
+            else {throw new UnknownStaffRoleException("Unknown Staff Role");}
         }
         return alr;
     }
