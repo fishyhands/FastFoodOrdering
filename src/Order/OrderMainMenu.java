@@ -31,7 +31,6 @@ public class OrderMainMenu {
         ArrayList<Order> orderListUn = Database.readOrderList(); // Have not removed the Orders that have expired
         ArrayList<PaymentMethod> paymentMethods = Database.readPaymentMethods();
         ArrayList<Order> orderList = new ArrayList<>();
-        Order newOrder;
         while (!exit) {
             orderList = OrderTimer.timerOrder(orderListUn);
             displayMainMenu();
