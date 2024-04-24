@@ -136,9 +136,10 @@ public class AdminMainMenu {
 	            else {System.out.println("Branch does not exist");}
 	        }
 	        else if (staffchoice == 11) {
-	            System.out.println("Enter new password");
-	            String pwd = sc.nextLine();
-	            staff.setPassword(pwd);
+	        	System.out.println("Enter new password");
+				 String pwd = sc.next();
+				 sc.nextLine();
+			     staff.setPassword(pwd);
 	        }
 	        else if (staffchoice == 12) {
 	            System.out.println("Logging out");
