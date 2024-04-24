@@ -30,10 +30,11 @@ public class StaffMainMenu{
             else if (staffchoice == 3) {
                 orderList = staff.processOrder(orderList);
             }
-            else if (staffchoice == 4) { // maybe the input can be in the setPassword method too, then no need arguments
-                System.out.println("Enter new password");
-                String pwd = sc.nextLine();
-                staff.setPassword(pwd);
+            else if (staffchoice == 4) { 
+            	System.out.println("Enter new password");
+				 String pwd = sc.next();
+				 sc.nextLine();
+			     staff.setPassword(pwd);
             }
             else if (staffchoice == 5) {
                 System.out.println("Logging out");
