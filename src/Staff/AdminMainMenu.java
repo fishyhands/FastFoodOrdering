@@ -26,7 +26,7 @@ public class AdminMainMenu {
 
 		do {
 			orderList = OrderTimer.timerOrder(orderListUn);
-	        System.out.println("Enter\n1 to add staff account,\n2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to change password, \n12 to logout");
+	        System.out.println("Enter\n1 to add staff account,\n2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to open new branch, \n12 to change password, \n13 to logout");
 	        staffchoice = sc.nextInt();
 			sc.nextLine();// non int error
 	        if (staffchoice == 1) { //some possible exceptions here
@@ -145,18 +145,27 @@ public class AdminMainMenu {
 	            else {System.out.println("Branch does not exist");}
 	        }
 	        else if (staffchoice == 11) {
+	        	System.out.println("Enter new branch name");
+	        	String branchName = sc.next();
+	        	System.out.println("Enter new branch location");
+	        	String branchLocation = sc.next();
+	        	System.out.println("Enter new branch staff quota");
+	        	int staffQuota = sc.nextInt();
+	        	staff.openNewBranch(branchList, branchName, branchLocation, staffQuota);
+	        }
+	        else if (staffchoice == 12) {
 				System.out.println("Enter new password");
 				String pwd = sc.next();
 				sc.nextLine();
 				staff.setPassword(staffList, pwd);
 	        }
-	        else if (staffchoice == 12) {
+	        else if (staffchoice == 13) {
 	            System.out.println("Logging out");
 	        }
 	        else {
 	            System.out.println("Invalid option");
 	        }
-		} while (staffchoice != 12);
+		} while (staffchoice != 13);
 		sc.close();
 		for (Staff s: staffList){
 			System.out.println(s.getStaffName()+ " " + s.getRole());
