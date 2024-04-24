@@ -35,33 +35,20 @@ public class MenuBrowsing {
             System.out.println("Enter 0 to exit the Menu and pay");
             System.out.println("Please select which category you would like: ");
             int choiceMainMenu = scanner.nextInt();
-            switch (choiceMainMenu) {
-                case 1:
-                    ChoiceMenu.chooseItems(branchMenu.get(0));//Set Meals
-                    break;
-                case 2:
-                    ChoiceMenu.chooseItems(branchMenu.get(1)); //Burger
-                    break;
-                case 3:
-                    ChoiceMenu.chooseItems(branchMenu.get(2)); // Side
-                    break;
-                case 4:
-                    ChoiceMenu.chooseItems(branchMenu.get(3)); // Drink
-                    break;
-                case 5:
-                    ChoiceMenu.chooseItems(branchMenu.get(branchMenu.size()-1));// Others
-                    break;
-                case 0:
-                    exit = true;
-                    float totalSum = order.calculateTotalSum();
-                    System.out.println("Total: " + order.getTotalSum());
-                    break;
-
-                default:
-                    System.out.println("Error, Wrong Choice please try again");
-                    break;
+            if (choiceMainMenu == 0) {
+            	exit = true;
+                float totalSum = order.calculateTotalSum();
+                System.out.println("Total: " + order.getTotalSum());
             }
-
+            else if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
+            	System.out.println("Invalid choice, please try again");
+            }
+            else if (branchMenu.get(choiceMainMenu-1).size() <= 0) {
+            	System.out.println("No available items in that category, please pick another one");
+            }
+            else {
+            	ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu-1));
+            }
         }
         return order;
     }

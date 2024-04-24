@@ -18,7 +18,7 @@ public class OrderMainMenu {
     private static void displayMainMenu(){
         System.out.println("Order Main Menu");
         System.out.println("0. Log out");
-        System.out.println("1. Select Branch");
+        System.out.println("1. Create Order");
         System.out.println("2. Check Order");
         System.out.println("3. Collect Order");
     }
@@ -39,6 +39,7 @@ public class OrderMainMenu {
             switch (choiceMainMenu) {
                 case 1:
                     // Get Branch
+                	System.out.println("Select branch:");
                     BranchList.displayBranches(branches);
                     int numBranches = branches.size();
                     int branchOption = scanner.nextInt();
@@ -83,6 +84,7 @@ public class OrderMainMenu {
                             quit = true;
                         }
                     }
+                    break;
                 case 3:
                     System.out.println("Enter Order ID for collection: ");
                     int collectOrderID = scanner.nextInt();
