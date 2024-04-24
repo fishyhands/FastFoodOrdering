@@ -46,7 +46,7 @@ public class Login {
                 String password = sc.next().trim();
 
 
-            	Staff.Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password); // get staffList from backend?
+            	Staff.Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password); 
             	if (loggedInStaff == null) {
             		System.out.println("Invalid login credentials!");
             	}
