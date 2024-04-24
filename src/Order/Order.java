@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 
 public class Order {
     private int orderID;
@@ -31,7 +32,7 @@ public class Order {
         this.time = time;
     }
 
-    public LocalTime getTime(){return this.time;}
+    public LocalTime getTime(){return this.time.truncatedTo(ChronoUnit.SECONDS);}
 
     public void setTime(){this.time = LocalTime.now();}
 
