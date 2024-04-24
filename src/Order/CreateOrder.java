@@ -21,7 +21,7 @@ public class CreateOrder {
         if (orderArrayList.isEmpty()){
             orderID = 1;
         }else{
-            orderID = orderArrayList.getLast().getOrderID() + 1;
+            orderID = orderArrayList.get(orderArrayList.size()-1).getOrderID() + 1;
         }
         System.out.println("Do you want to takeaway the order?");
         System.out.println("1) Yes");
