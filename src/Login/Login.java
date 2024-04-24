@@ -49,12 +49,7 @@ public class Login {
                     System.out.println("Invalid login credentials!");
                 }
                 else {
-                	staffList.remove(loggedInStaff);
-                    loggedInStaff.staffMenu();
-                    if (!(loggedInStaff instanceof Admin)) {
-                    	staffList.add(loggedInStaff);
-                        Database.writeStaffList(staffList);
-                    }                   
+                    loggedInStaff.staffMenu();               
                 }
             }
 
