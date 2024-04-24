@@ -11,7 +11,7 @@ public class Branch {
         this.branchName = branchName;
         this.branchLocation = branchLocation;
         this.staffQuota = staffQuota;
-        this.openOrClose = false;
+        this.openOrClose = openOrClose;
     }
 
     //get
