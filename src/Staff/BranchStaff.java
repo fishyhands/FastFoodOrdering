@@ -3,7 +3,6 @@ package Staff;
 import Order.Order;
 import Order.Order_Status;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,15 +26,13 @@ public class BranchStaff extends Staff {
         }
     }
 
-    private Order orderSelection(ArrayList<Order> orderList){
+    private Order orderSelection(ArrayList<Order> orderList) {
         System.out.println("Please enter the Order ID:");
         Scanner sc = new Scanner(System.in);
         int id = sc.nextInt();
-        for (Order o : orderList){
-            if (o.getOrderID() == id & o.getBranch().equals(this.getBranch())){
-                return o;
-            } else if (o.getOrderID() == id & !o.getBranch().equals(this.getBranch())) {
-                System.out.println("Order is not in this branch, try again");
+        for (Order order : orderList) {
+            if (order.getOrderID() == id & order.getBranch().equals(this.getBranch())) {
+                return order;
             }
         }
         System.out.println("Order ID is wrong");
@@ -43,13 +40,25 @@ public class BranchStaff extends Staff {
     }
 
     public void viewOrderDetails(ArrayList<Order> orderList){
+        displayOrders(orderList);
         Order order = null;
         while(order == null){
-            order = orderSelection(orderList);
+            boolean found = false;
+            for (Order o : orderList) {
+                if (o.getBranch().equals(this.getBranch())) {
+                    found = true;
+                    break;
+                }
+            }
+            if (found){
+                order = orderSelection(orderList);
+                System.out.println("Details for Order ID: " + order.getOrderID());
+                System.out.println("Status: " + order.getStatus());
+                order.displayCart();
+            }else{
+                break;
+            }
         }
-        System.out.println("Details for Order ID: " + order.getOrderID());
-        System.out.println("Status: " + order.getStatus());
-        order.displayCart();
     }
 
     public ArrayList<Order> processOrder(ArrayList<Order> orderList){
@@ -83,6 +92,7 @@ public class BranchStaff extends Staff {
 
                 case 2:
                     order.setStatus(Order_Status.READY);
+                    order.setTime();
                     break;
 
                 default:

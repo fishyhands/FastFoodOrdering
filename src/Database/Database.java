@@ -186,6 +186,8 @@ public class Database {
                 st.deleteCharAt(st.length() - 1);
             }
             st.append(SEPARATOR);
+            st.append(o.getTotalSum());
+            st.append(SEPARATOR);
             st.append(o.getTime());
             alw.add(st.toString());
         }

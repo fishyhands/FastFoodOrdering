@@ -16,12 +16,15 @@ public class StaffMainMenu{
         int staffchoice;
         do {
             orderList = OrderTimer.timerOrder(orderListUn);
-            System.out.println("Enter 1 to display new orders\n2 to view the details of a particular order\n3 to process order\n4 to change password\n5 to logout");
+            System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to change password\n\t5 to logout");
             staffchoice = sc.nextInt(); // non int error
             if (staffchoice == 1) {
                 staff.displayOrders(orderList);
             }
             else if (staffchoice == 2) {
+                if (orderList.isEmpty()){
+                    System.out.println("No new Orders");
+                }
                 staff.viewOrderDetails(orderList);
             }
             else if (staffchoice == 3) {

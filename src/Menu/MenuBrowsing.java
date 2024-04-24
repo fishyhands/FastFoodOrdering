@@ -32,7 +32,7 @@ public class MenuBrowsing {
 
         while (!exit) {
             displayMenuBrowsing(menuList, branchName);
-            System.out.println("Enter 0 to exit the Menu");
+            System.out.println("Enter 0 to exit the Menu and pay");
             System.out.println("Please select which category you would like: ");
             int choiceMainMenu = scanner.nextInt();
             switch (choiceMainMenu) {
@@ -53,7 +53,8 @@ public class MenuBrowsing {
                     break;
                 case 0:
                     exit = true;
-                    System.out.println(order);
+                    float totalSum = order.calculateTotalSum();
+                    System.out.println("Total: " + order.getTotalSum());
                     break;
 
                 default:

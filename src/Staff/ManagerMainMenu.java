@@ -20,7 +20,7 @@ public class ManagerMainMenu {
 		int staffchoice;
 		do {
 			orderList = OrderTimer.timerOrder(orderListUn);
-			System.out.println("Enter 1 to display new orders, 2 to view the details of a particular order, 3 to process order, 4 to display branch staff list, 5 to add menu item, 6 to remove menu item, 7 to update item price, 8 to update item availability, 9 to change password, 10 to logout");
+			System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to display branch staff list\n\t5 to add menu item\n\t6 to remove menu item\n\t7 to update item price\n\t8 to update item availability\n\t9 to change password\n\t10 to logout");
 			 staffchoice = sc.nextInt(); // non int error
 			 if (staffchoice == 1) {
 			     staff.displayOrders(orderList);
@@ -36,13 +36,13 @@ public class ManagerMainMenu {
 			 }    
 			 else if (staffchoice == 5) {
 				 System.out.println("Enter item name:");
+				 String itemName = sc.next();
 				 sc.nextLine();
-				 String itemName = sc.nextLine();
 				 System.out.println("Enter price:");
 				 float price = sc.nextFloat();
 				 System.out.println("Enter category:");
+				 String category = sc.next();
 				 sc.nextLine();
-				 String category = sc.nextLine();
 				 menuList = staff.addItem(itemName, price, category, true, menuList);
 			 }    
 			 else if (staffchoice == 6) {
@@ -53,22 +53,22 @@ public class ManagerMainMenu {
 			 }   
 			 else if (staffchoice == 7) {
 				 System.out.println("Enter item name:");
+				 String itemName = sc.next();
 				 sc.nextLine();
-				 String itemName = sc.nextLine();
 				 System.out.println("Enter new price:");
 				 float newPrice = sc.nextFloat();
 				 menuList = staff.updatePrice(itemName, newPrice, menuList);
 			 }
 			 else if (staffchoice == 8) {
 				 System.out.println("Enter item name:");
+				 String itemName = sc.next();
 				 sc.nextLine();
-				 String itemName = sc.nextLine();
 				 menuList = staff.updateAvailability(itemName,menuList);
 			 }
 			 else if (staffchoice == 9) {
 			     System.out.println("Enter new password");
-				sc.nextLine();
-			     String pwd = sc.nextLine();
+				 String pwd = sc.next();
+				 sc.nextLine();
 			     staff.setPassword(pwd);
 			 }
 			 else if (staffchoice == 10) {

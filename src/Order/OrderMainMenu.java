@@ -17,7 +17,7 @@ import static Menu.MenuBrowsing.order;
 public class OrderMainMenu {
     private static void displayMainMenu(){
         System.out.println("Order Main Menu");
-        System.out.println("0. Back");
+        System.out.println("0. Log out");
         System.out.println("1. Select Branch");
         System.out.println("2. Check Order");
         System.out.println("3. Collect Order");
@@ -49,9 +49,16 @@ public class OrderMainMenu {
                     String branchName = branches.get(branchOption - 1).getBranchName();
                     //call menu
                     newOrder= MenuBrowsing.run(branchName);
-                    orderList.add(newOrder);
-                    PaymentMainMenu.PaymentMenu(paymentMethods);
-                    Database.writeOrderList(orderList);
+                    if (!newOrder.getCart().isEmpty()) {
+                        PaymentMainMenu.PaymentMenu(paymentMethods);
+                        orderList.add(newOrder);
+                        Database.writeOrderList(orderList);
+                        System.out.println("-----------------------");
+                        System.out.println("Your Order ID is: " + newOrder.getOrderID());
+                        System.out.println("Ordered at: " + newOrder.getTime());
+                        System.out.println("-----------------------");
+                    }
+                    break;
 
                 case 2:
                     boolean quit = false;

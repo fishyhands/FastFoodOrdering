@@ -35,10 +35,11 @@ public class Login {
             case 2:
             	ArrayList<Staff.Staff> staffList = Database.readStaffList();
                 System.out.println("Enter username");
+                System.out.println("Press Enter to continue...");
                 String loginID = sc.next().trim();
 
                 // Wait for the user to press Enter before prompting for the password
-                System.out.println("Press Enter to continue...");
+
                 sc.nextLine();
 
                 System.out.println("Enter password");

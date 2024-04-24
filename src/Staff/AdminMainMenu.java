@@ -25,7 +25,7 @@ public class AdminMainMenu {
 
 		do {
 			orderList = OrderTimer.timerOrder(orderListUn);
-	        System.out.println("Enter 1 to add staff account,\n 2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to change password, \n12 to logout");
+	        System.out.println("Enter\n\t1 to add staff account,\n 2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to change password, \n12 to logout");
 	        staffchoice = sc.nextInt(); // non int error
 	        if (staffchoice == 1) { //some possible exceptions here
 	            System.out.println("Enter name");

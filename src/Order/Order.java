@@ -3,13 +3,10 @@ package Order;
 
 import Database.Database;
 import Menu.Menu;
-import Menu.MenuList;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.time.LocalTime;
 
 public class Order {
@@ -35,6 +32,8 @@ public class Order {
     }
 
     public LocalTime getTime(){return this.time;}
+
+    public void setTime(){this.time = LocalTime.now();}
 
     public int getOrderID() {
         return orderID;
