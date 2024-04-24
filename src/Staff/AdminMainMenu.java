@@ -82,15 +82,7 @@ public class AdminMainMenu {
 	            else {System.out.println("Staff does not exist");}
 	        }
 	        else if (staffchoice == 4) {
-				// System.out.println("Staff Name\t| Login ID\t| Branch\t| Role\t| Gender\t|");
-	   //          for (Staff s: staffList){
-				// 	System.out.println(s.getStaffName() + "\t" + s.getLoginID() + "\t" + s.getBranch() + "\t" +s.getRole() + "\t" +s.getGender() );
-				// }
-			
-			System.out.println("Staff Name\t\t| Login ID\t| Branch\t| Role\t| Gender\t|");
-				for (Staff s : staffList) {
-					System.out.println(String.format("%-15s | %-10s | %-10s | %-5s | %-6s |", s.getStaffName(), s.getLoginID(), s.getBranch(), s.getRole(), s.getGender()));
-				}
+				DisplayFilters.run(staffList);
 	        }    
 	        else if (staffchoice == 5) {
 	            staff.assignManager(branchList, staffList);
@@ -99,7 +91,6 @@ public class AdminMainMenu {
 				System.out.println("Enter name of staff to edit");
 				String name;
 				name = sc.nextLine().trim();
-				System.out.println(name);
 				Staff edited = null;
 				for (Staff s : staffList) {
 					if (Objects.equals(s.getStaffName(), name)) {
@@ -167,9 +158,6 @@ public class AdminMainMenu {
 	        }
 		} while (staffchoice != 13);
 		sc.close();
-		for (Staff s: staffList){
-			System.out.println(s.getStaffName()+ " " + s.getRole());
-		}
 		Database.writeStaffList(staffList);
 		Database.writeBranchList(branchList);
 		Database.writeOrderList(orderList);
