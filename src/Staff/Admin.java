@@ -153,6 +153,10 @@ public class Admin extends Staff {
         return count;
     }
     
+    public void openNewBranch(ArrayList<Branch> branchList, String branchName, String branchLocation, int staffQuota) {   	
+    	branchList.add(new Branch(branchName, branchLocation, staffQuota, true));
+    }
+    
     public void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
         AdminMainMenu.mainMenu(this);
     }
