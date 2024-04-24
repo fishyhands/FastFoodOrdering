@@ -55,6 +55,11 @@ public class OrderMainMenu {
                             String branchName = branches.get(branchOption - 1).getBranchName();
                             //call menu
                             MenuBrowsing.run(branchName);
+                            //if cart empty
+                            if(order.getCart().isEmpty()){
+                                System.out.println("Cart is empty. Order has not been created.");
+                                break;
+                            }
                             if (!order.getCart().isEmpty()) {
                                 PaymentMainMenu.PaymentMenu(paymentMethods);
                                 orderList.add(order);
