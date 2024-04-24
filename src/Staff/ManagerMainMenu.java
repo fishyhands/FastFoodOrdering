@@ -11,7 +11,7 @@ import Order.Order;
 import Order.OrderTimer;
 
 public class ManagerMainMenu {
-	public static Manager mainMenu(Manager staff) throws IOException, UnknownStaffRoleException {
+	public static void mainMenu(Manager staff) throws IOException, UnknownStaffRoleException {
 		ArrayList<Staff> staffList = Database.readStaffList();
 		ArrayList<Menu> menuList = Database.readMenuList();
 		ArrayList<Order> orderListUn = Database.readOrderList();
@@ -81,6 +81,5 @@ public class ManagerMainMenu {
 		} while (staffchoice != 10);
 		Database.writeOrderList(orderList);
 		Database.writeMenuList(menuList);
-		return staff;
 	}
 }

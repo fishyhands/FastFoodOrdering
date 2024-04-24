@@ -106,7 +106,7 @@ public class BranchStaff extends Staff {
         return orderList;
     }
 
-    public Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
-    	return StaffMainMenu.mainMenu(this);
+    public void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
+        StaffMainMenu.mainMenu(this);
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StaffMainMenu{
-    public static BranchStaff mainMenu(BranchStaff staff)  throws IOException {
+    public static void mainMenu(BranchStaff staff)  throws IOException {
         ArrayList<Order> orderListUn= Database.readOrderList();
         ArrayList<Order> orderList;
         Scanner sc = new Scanner(System.in);
@@ -44,7 +44,6 @@ public class StaffMainMenu{
             }
         } while (staffchoice != 5);
         Database.writeOrderList(orderList);
-        return staff;
     }
 
 }

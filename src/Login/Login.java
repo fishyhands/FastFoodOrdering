@@ -47,13 +47,11 @@ public class Login {
                     System.out.println("Invalid login credentials!");
                 }
                 else {
-                    Staff.Staff loggedOutStaff = loggedInStaff.staffMenu();
-                    staffList.remove(loggedInStaff);
-                    staffList.add(loggedOutStaff);
-                    Database.writeStaffList(staffList);
+                    loggedInStaff.staffMenu();
                 }
             }
 
+            sc.close();
         } catch (UnknownStaffRoleException ex) {
             System.out.println("UnknownStaffRoleException: " + ex.getMessage());
         } catch (IOException ex) {

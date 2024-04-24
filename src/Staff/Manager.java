@@ -2,7 +2,6 @@ package Staff;
 
 
 import Menu.Menu;
-import Order.Order;
 
 import java.io.IOException;
 import java.util.*;
@@ -92,7 +91,7 @@ public class Manager extends BranchStaff {
         }
     }
     
-    public Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
-    	return ManagerMainMenu.mainMenu(this);
+    public void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
+        ManagerMainMenu.mainMenu(this);
     }
 }

@@ -15,7 +15,7 @@ import Order.OrderTimer;
 
 
 public class AdminMainMenu {
-	public static Admin mainMenu(Admin staff) throws IOException, ClassNotFoundException, UnknownStaffRoleException {
+	public static void mainMenu(Admin staff) throws IOException, ClassNotFoundException, UnknownStaffRoleException {
 		Scanner sc = new Scanner(System.in);
 		int staffchoice;
 		ArrayList<Staff> staffList = Database.readStaffList();
@@ -27,7 +27,8 @@ public class AdminMainMenu {
 		do {
 			orderList = OrderTimer.timerOrder(orderListUn);
 	        System.out.println("Enter\n1 to add staff account,\n2 to remove staff account, \n3 to edit staff account, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to change password, \n12 to logout");
-	        staffchoice = sc.nextInt(); // non int error
+	        staffchoice = sc.nextInt();
+			sc.nextLine();// non int error
 	        if (staffchoice == 1) { //some possible exceptions here
 	            System.out.println("Enter name");
 	            String name = sc.next();
@@ -91,7 +92,9 @@ public class AdminMainMenu {
 	        }    
 	        else if (staffchoice == 6) {
 				System.out.println("Enter name of staff to edit");
-				String name = sc.nextLine();
+				String name;
+				name = sc.nextLine().trim();
+				System.out.println(name);
 				Staff edited = null;
 				for (Staff s : staffList) {
 					if (Objects.equals(s.getStaffName(), name)) {
@@ -137,10 +140,10 @@ public class AdminMainMenu {
 	            else {System.out.println("Branch does not exist");}
 	        }
 	        else if (staffchoice == 11) {
-	        	System.out.println("Enter new password");
-				 String pwd = sc.next();
-				 sc.nextLine();
-			     staff.setPassword(pwd);
+				System.out.println("Enter new password");
+				String pwd = sc.next();
+				sc.nextLine();
+				staff.setPassword(pwd);
 	        }
 	        else if (staffchoice == 12) {
 	            System.out.println("Logging out");
@@ -149,10 +152,13 @@ public class AdminMainMenu {
 	            System.out.println("Invalid option");
 	        }
 		} while (staffchoice != 12);
+		sc.close();
+		for (Staff s: staffList){
+			System.out.println(s.getStaffName()+ " " + s.getRole());
+		}
 		Database.writeStaffList(staffList);
 		Database.writeBranchList(branchList);
 		Database.writeOrderList(orderList);
 		Database.writePaymentMethods(paymentList);
-		return staff;
 	}
 }

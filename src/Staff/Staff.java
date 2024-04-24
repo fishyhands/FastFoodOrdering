@@ -1,10 +1,8 @@
 package Staff;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import Exceptions.UnknownStaffRoleException;
-import Order.Order;
 
 public abstract class Staff {
 
@@ -50,5 +48,5 @@ public abstract class Staff {
     public void setBranch(String branch) {this.branch = branch;}
 
 
-    public abstract Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException;
+    public abstract void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException;
 }

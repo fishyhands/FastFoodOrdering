@@ -2,7 +2,6 @@ package Staff;
 
 import Branch.Branch;
 import Exceptions.UnknownStaffRoleException;
-import Payment.PaymentMethod;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,11 +54,13 @@ public class Admin extends Staff {
                         System.out.print("Please write new name: ");
                         String newName = sc.nextLine();
                         o.setStaffName(newName);
+                        return staffList;
                     case 2:
                         System.out.println("Editing Staff Login ID");
                         System.out.print("Please write new login id: ");
                         String newID = sc.nextLine();
                         o.setLoginID(newID);
+                        return staffList;
                     case 3:
                         System.out.println("Editing Staff Role");
                         System.out.print("Please write new role: ");
@@ -69,27 +70,30 @@ public class Admin extends Staff {
                         }else{
                             System.out.println("Role does not exist");
                         }
+                        return staffList;
                     case 4:
                         System.out.println("Editing Staff Gender");
                         System.out.print("Please write new gender: ");
                         String newGender = sc.next();
                         o.setGender(newGender);
+                        return staffList;
                     case 5:
                         System.out.println("Editing Staff Age");
                         System.out.print("Please write new age: ");
                         int newAge = sc.nextInt();
                         o.setAge(newAge);
+                        return staffList;
                     case 6:
                         System.out.println("Editing Staff Branch");
                         System.out.print("Please write new branch: ");
                         String newBranch = sc.nextLine();
                         o.setBranch(newBranch);
+                        return staffList;
                     default:
                         System.out.println("Wrong choice");
                 }
                 break;
             }
-            else{System.out.println("Error:\nStaff not found");}
         }
         return staffList;
     }
@@ -149,7 +153,7 @@ public class Admin extends Staff {
         return count;
     }
     
-    public Staff staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
-    	return AdminMainMenu.mainMenu(this);
+    public void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
+        AdminMainMenu.mainMenu(this);
     }
 }
