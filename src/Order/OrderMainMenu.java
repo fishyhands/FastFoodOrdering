@@ -59,8 +59,8 @@ public class OrderMainMenu {
                         System.out.println("Ordered at: " + newOrder.getTime());
                         System.out.println("-----------------------");
                     }
+                    order = null;
                     break;
-
                 case 2:
                     boolean quit = false;
                     if (orderList.isEmpty()){

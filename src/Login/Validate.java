@@ -33,10 +33,10 @@ public class Validate {
         for (Order order: orderList){
             if (order.getOrderID() == orderID){
                 return order;
-            }else{
-                System.out.println("Order not found");
             }
         }
+             
+        System.out.println("Order not found");
         return null;
     }
 }
