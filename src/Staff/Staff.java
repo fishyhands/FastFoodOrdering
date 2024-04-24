@@ -1,7 +1,9 @@
 package Staff;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import Database.Database;
 import Exceptions.UnknownStaffRoleException;
 
 public abstract class Staff {
@@ -39,8 +41,25 @@ public abstract class Staff {
     //set
     public void setStaffName(String staffName) {this.staffName = staffName;}
     public void setLoginID(String loginID) {this.loginID = loginID;}
-    public void setPassword(String newPassword) {
+    public void setPassword(String newPassword) throws IOException, UnknownStaffRoleException {
+    	ArrayList<Staff> staffList = Database.readStaffList();
+    	for (Staff s : staffList) {
+            if (this.getLoginID().equals(s.getLoginID())) {
+            	s.staffPassword = newPassword;
+                break;
+            }
+        }       
+        Database.writeStaffList(staffList);
+    }
+    public void setPassword(ArrayList<Staff> staffList, String newPassword) {
         this.staffPassword = newPassword;
+        for (Staff s : staffList) {
+            if (this.getLoginID().equals(s.getLoginID())) {
+                staffList.remove(s);
+                staffList.add(this);
+                break;
+            }
+        }
     }
     public void setRole(String role) {this.role = role;}
     public void setGender(String gender) {this.gender = gender;}

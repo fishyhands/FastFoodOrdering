@@ -1,7 +1,7 @@
 package Staff;
 
 import Database.Database;
-
+import Exceptions.UnknownStaffRoleException;
 import Order.Order;
 import Order.OrderTimer;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StaffMainMenu{
-    public static void mainMenu(BranchStaff staff)  throws IOException {
+    public static void mainMenu(BranchStaff staff)  throws IOException, UnknownStaffRoleException {
         ArrayList<Order> orderListUn= Database.readOrderList();
         ArrayList<Order> orderList;
         Scanner sc = new Scanner(System.in);

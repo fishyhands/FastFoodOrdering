@@ -143,7 +143,7 @@ public class AdminMainMenu {
 				System.out.println("Enter new password");
 				String pwd = sc.next();
 				sc.nextLine();
-				staff.setPassword(pwd);
+				staff.setPassword(staffList, pwd);
 	        }
 	        else if (staffchoice == 12) {
 	            System.out.println("Logging out");

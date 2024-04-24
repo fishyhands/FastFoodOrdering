@@ -8,6 +8,8 @@ import java.util.Scanner;
 import Database.Database;
 import Exceptions.UnknownStaffRoleException;
 import Order.OrderMainMenu;
+import Staff.Admin;
+import Staff.Staff;
 
 
 public class Login {
@@ -34,7 +36,7 @@ public class Login {
                 OrderMainMenu.main(null);
                 break;
             case 2:
-                ArrayList<Staff.Staff> staffList = Database.readStaffList();
+                ArrayList<Staff> staffList = Database.readStaffList();
                 System.out.println("Enter username");
                 String loginID = sc.next().trim();
 
@@ -42,12 +44,12 @@ public class Login {
                 String password = sc.next().trim();
 
 
-                Staff.Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password);
+                Staff loggedInStaff = Validate.validateStaff(staffList, loginID, password);
                 if (loggedInStaff == null) {
                     System.out.println("Invalid login credentials!");
                 }
                 else {
-                    loggedInStaff.staffMenu();
+                    loggedInStaff.staffMenu();               
                 }
             }
 
