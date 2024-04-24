@@ -23,7 +23,7 @@ public class ManagerMainMenu {
 			orderList = OrderTimer.timerOrder(orderListUn);
 			System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to display branch staff list\n\t5 to add menu item\n\t6 to remove menu item\n\t7 to update item price\n\t8 to update item availability\n\t9 to change password\n\t10 to logout");
 			 staffchoice = sc.nextInt(); // non int error
-			 sc.nextLine();
+			 sc.nextLine(); // reads enter
 			 if (staffchoice == 1) {
 			     staff.displayOrders(orderList);
 			 }
