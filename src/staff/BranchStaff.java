@@ -67,7 +67,7 @@ public class BranchStaff extends Staff {
     }
 
     /**
-     * Displays details of an order for the branch where the staff member works.
+     * Displays details of an order.
      *
      * @param orderList The list of orders.
      */
@@ -94,7 +94,7 @@ public class BranchStaff extends Staff {
     }
 
     /**
-     * Processes an order for the branch where the staff member works.
+     * Processes an order for the branch.
      *
      * @param orderList The list of orders.
      */
