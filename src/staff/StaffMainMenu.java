@@ -23,7 +23,7 @@ public class StaffMainMenu {
         int staffchoice;
         do {
             OrderTimer.timerOrder(OrderList.getOrderList()); // Remove the Orders that have expired
-            System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to change password\n\t5 to logout");
+            System.out.println("\nManage Orders\n-------------\n1 to display new orders\n2 to view the details of a particular order\n3 to process order\n\nAccount\n-------------\n4 to change password\n5 to logout\n\nEnter choice");
             staffchoice = sc.nextInt();
             if (staffchoice == 1) {
                 staff.displayOrders(OrderList.getOrderList());

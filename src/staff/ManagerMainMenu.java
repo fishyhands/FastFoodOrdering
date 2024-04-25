@@ -32,7 +32,7 @@ public class ManagerMainMenu {
 		int staffchoice;
 		do {
 			OrderTimer.timerOrder(OrderList.getOrderList()); // Remove the Orders that have expired
-			System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to display branch staff list\n\t5 to add menu item\n\t6 to remove menu item\n\t7 to update item price\n\t8 to update item availability\n\t9 to change password\n\t10 to logout");
+			System.out.println("\nManage Orders\n-------------\n1 to display new orders\n2 to view the details of a particular order\n3 to process order\n\nManage Branch Staff\n-------------\n4 to display branch staff list\n\nManage Menu\n-------------\n5 to add menu item\n6 to remove menu item\n7 to update item price\n8 to update item availability\n\nAccount\n-------------\n9 to change password\n10 to logout\n\nEnter choice");
 			 staffchoice = sc.nextInt();
 			 sc.nextLine(); // reads enter
 			 if (staffchoice == 1) {
