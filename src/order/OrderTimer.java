@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class OrderTimer {
 
     /**
-     * Removes orders from the list that have exceeded certain time limits.
+     * Removes orders from the list that have been completed and are ready to collect but not collected for a while.
      *
      * @param orderList The list of orders to be checked.
      */
