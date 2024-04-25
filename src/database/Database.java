@@ -16,7 +16,10 @@ import staff.BranchStaff;
 import staff.Manager;
 import staff.Staff;
 
-
+/**
+ * The Database class provides methods for reading and writing data to/from files.
+ * It handles operations related to branches, staff, menus, orders, and payment methods.
+ */
 public class Database {
     private static final String BRANCHLIST = "branch_list.txt";
     private static final String STAFFLIST = "staff_list.txt";
@@ -24,6 +27,12 @@ public class Database {
     private static final String ORDERLIST = "order_list.txt";
     private static final String PAYMENTLIST = "payment_methods.txt";
     private static final String SEPARATOR = ",";
+    /**
+     * Reads the list of branches from the database file.
+     *
+     * @return An ArrayList containing Branch objects read from the file.
+     * @throws IOException if an I/O error occurs while reading the file.
+     */
 
     public static ArrayList<Branch> readBranchList() throws IOException {
         ArrayList<String> stringArray = (ArrayList) read(filePath(BRANCHLIST)); // file data to string
@@ -40,6 +49,12 @@ public class Database {
         }
         return alr;
     }
+    /**
+     * Writes the list of branches to the database file.
+     *
+     * @param branches The list of Branch objects to write to the file.
+     * @throws IOException if an I/O error occurs while writing the file.
+     */
 
     public static void writeBranchList(ArrayList<Branch> branches) throws IOException {
         ArrayList<String> alw = new ArrayList<>();
@@ -57,6 +72,13 @@ public class Database {
         }
         write(filePath(BRANCHLIST), alw);
     }
+    /**
+     * Reads the list of staff members from the database file.
+     *
+     * @return An ArrayList containing Staff objects read from the file.
+     * @throws IOException                if an I/O error occurs while reading the file.
+     * @throws UnknownStaffRoleException if an unknown staff role is encountered while reading.
+     */
 
     public static ArrayList<Staff> readStaffList() throws IOException, UnknownStaffRoleException {
         ArrayList<String> stringArray = (ArrayList) read(filePath(STAFFLIST));
@@ -78,6 +100,12 @@ public class Database {
         return alr;
     }
 
+    /**
+     * Writes the list of staff members to the database file.
+     *
+     * @param staffList The list of Staff objects to write to the file.
+     * @throws IOException if an I/O error occurs while writing the file.
+     */
 
 
     public static void writeStaffList(ArrayList<Staff> staffList) throws IOException {
@@ -102,7 +130,12 @@ public class Database {
         }
         write(filePath(STAFFLIST), alw);
     }
-
+    /**
+     * Reads the list of menu items from the database file.
+     *
+     * @return An ArrayList containing Menu objects read from the file.
+     * @throws IOException if an I/O error occurs while reading the file.
+     */
     public static ArrayList<Menu> readMenuList() throws IOException {
         ArrayList<String> stringArray = (ArrayList) read(filePath(MENULIST));
         ArrayList<Menu> alr = new ArrayList<>();
@@ -118,7 +151,12 @@ public class Database {
         }
         return alr;
     }
-
+    /**
+     * Writes the list of menu items to the database file.
+     *
+     * @param menuList The list of Menu objects to write to the file.
+     * @throws IOException if an I/O error occurs while writing the file.
+     */
     public static void writeMenuList(ArrayList<Menu> menuList) throws IOException {
         ArrayList<String > alw = new ArrayList<>();
 
@@ -137,7 +175,12 @@ public class Database {
         }
         write(filePath(MENULIST), alw);
     }
-
+    /**
+     * Reads the list of orders from the database file.
+     *
+     * @return An ArrayList containing Order objects read from the file.
+     * @throws IOException if an I/O error occurs while reading the file.
+     */
     public static ArrayList<Order> readOrderList() throws IOException {
         ArrayList<Order> orderList = new ArrayList<>();
         ArrayList<String> stringArray = (ArrayList) read(filePath(ORDERLIST));
@@ -163,6 +206,12 @@ public class Database {
         }
         return orderList;
     }
+    /**
+     * Writes the list of orders to the database file.
+     *
+     * @param orderList The list of Order objects to write to the file.
+     * @throws IOException if an I/O error occurs while writing the file.
+     */
 
     public static void writeOrderList(ArrayList<Order> orderList) throws IOException {
         ArrayList<String > alw = new ArrayList<>();
@@ -195,6 +244,13 @@ public class Database {
         }
         write(filePath(ORDERLIST), alw);
     }
+    /**
+     * Reads the list of payment methods from the database file.
+     *
+     * @return An ArrayList containing PaymentMethod objects read from the file.
+     * @throws IOException            if an I/O error occurs while reading the file.
+     * @throws ClassNotFoundException if the class of a serialized object cannot be found.
+     */
 
 
     public static ArrayList readPaymentMethods() throws IOException, ClassNotFoundException{
@@ -205,7 +261,12 @@ public class Database {
         objectIn.close();
         return paymentMethods;
     }
-
+    /**
+     * Writes the list of payment methods to the database file.
+     *
+     * @param paymentMethods The list of PaymentMethod objects to write to the file.
+     * @throws IOException if an I/O error occurs while writing the file.
+     */
     public static void writePaymentMethods(ArrayList paymentMethods) throws IOException{
         FileOutputStream fileOut = new FileOutputStream(filePath(PAYMENTLIST));
         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
@@ -213,7 +274,15 @@ public class Database {
         objectOut.close();
     }
 
+// Private utility methods for reading/writing files and constructing file paths
 
+    /**
+     * Writes data to a file.
+     *
+     * @param fileName The name of the file to write to.
+     * @param data     The data to write to the file.
+     * @throws IOException if an I/O error occurs while writing the file.
+     */
     private static void write(String fileName, ArrayList<String> data) throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(fileName));
         try {
@@ -224,7 +293,13 @@ public class Database {
             out.close();
         }
     }
-
+    /**
+     * Reads data from a file.
+     *
+     * @param fileName The name of the file to read from.
+     * @return An ArrayList containing the data read from the file.
+     * @throws IOException if an I/O error occurs while reading the file.
+     */
     private static ArrayList<String> read(String fileName) throws IOException {
         ArrayList<String> data = new ArrayList<>();
         Scanner scanner = new Scanner(new FileInputStream(fileName));
@@ -237,6 +312,12 @@ public class Database {
         }
         return data;
     }
+    /**
+     * Constructs the file path for a given file name.
+     *
+     * @param fileName The name of the file.
+     * @return The file path.
+     */
 
     private static String filePath(String fileName){
         URL url = Database.class.getResource(fileName);

@@ -13,21 +13,36 @@ import menu.MenuBrowsing;
 import payment.PaymentMainMenu;
 import payment.PaymentMethodList;
 
+/**
+ * The OrderMainMenu class provides functionality for managing orders.
+ * It allows users to create, check, and collect orders.
+ */
 public class OrderMainMenu {
+
+    /**
+     * Displays the main menu for order management.
+     */
     private static void displayMainMenu(){
         System.out.println("Order Main Menu");
         System.out.println("1. Create Order");
         System.out.println("2. Check Order");
         System.out.println("3. Collect Order");
-        System.out.println("4. Log out");        
+        System.out.println("4. Log out");
     }
 
+    /**
+     * Main method to run the order management functionality.
+     *
+     * @param args The command-line arguments.
+     * @throws IOException            If an I/O error occurs.
+     * @throws ClassNotFoundException If the specified class cannot be found.
+     */
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
-        
+
         while (!exit) {
-        	OrderTimer.timerOrder(OrderList.getOrderList()); // Remove the Orders that have expired
+            OrderTimer.timerOrder(OrderList.getOrderList()); // Remove the Orders that have expired
             displayMainMenu();
             String choiceMainMenu = scanner.next();
             switch (choiceMainMenu) {
@@ -92,17 +107,17 @@ public class OrderMainMenu {
                         //getting stuck in a loop here. order is always null
                         if (order != null){
                             System.out.println("Order ID:\t" + order.getOrderID() + "\n"
-                                                + "Branch:\t" + order.getBranch() + "\n"
-                                                + "Paid:\t" + order.isPaid() + "\n"
-                                                + "Status:\t" + order.getStatus() + "\n"
-                                                + "Takeaway:\t" + order.isTakeaway() + "\n");
+                                    + "Branch:\t" + order.getBranch() + "\n"
+                                    + "Paid:\t" + order.isPaid() + "\n"
+                                    + "Status:\t" + order.getStatus() + "\n"
+                                    + "Takeaway:\t" + order.isTakeaway() + "\n");
                             order.displayCart();
                             System.out.println("Total:\t" + order.getTotalSum());
                             quit = true;
                         }
                     }
                     break;
-                    
+
                 case "3":
                     System.out.println("Enter Order ID for collection: ");
                     int collectOrderID = scanner.nextInt();

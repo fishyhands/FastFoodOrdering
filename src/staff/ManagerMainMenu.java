@@ -11,8 +11,21 @@ import menu.MenuList;
 import order.Order;
 import order.OrderList;
 import order.OrderTimer;
+/**
+ * Represents the main menu for Manager staff members.
+ */
 
 public class ManagerMainMenu {
+
+
+	/**
+	 * Displays the main menu options and handles user input for a Manager staff member.
+	 *
+	 * @param staff The Manager staff member for whom the menu is displayed.
+	 * @throws IOException               If an I/O error occurs.
+	 * @throws UnknownStaffRoleException If the staff role is unknown.
+	 */
+
 	public static void mainMenu(Manager staff) throws IOException, UnknownStaffRoleException {
 
 		Scanner sc = new Scanner(System.in);
@@ -20,7 +33,7 @@ public class ManagerMainMenu {
 		do {
 			OrderTimer.timerOrder(OrderList.getOrderList()); // Remove the Orders that have expired
 			System.out.println("Enter:\n\t1 to display new orders\n\t2 to view the details of a particular order\n\t3 to process order\n\t4 to display branch staff list\n\t5 to add menu item\n\t6 to remove menu item\n\t7 to update item price\n\t8 to update item availability\n\t9 to change password\n\t10 to logout");
-			 staffchoice = sc.nextInt(); // non int error
+			 staffchoice = sc.nextInt();
 			 sc.nextLine(); // reads enter
 			 if (staffchoice == 1) {
 			     staff.displayOrders(OrderList.getOrderList());

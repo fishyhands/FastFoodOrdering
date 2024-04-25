@@ -1,5 +1,9 @@
 package menu;
 
+/**
+ * The Menu class represents a menu item.
+ * It contains information such as name, price, branch, category, and availability.
+ */
 public class Menu {
     private String name;
     private float price;
@@ -7,40 +11,101 @@ public class Menu {
     private String category;
     private boolean availability;
 
-    public Menu(String n, float p, String branch, String category,boolean availability){
-        this.name = n;
-        this.price = p;
+    /**
+     * Constructs a Menu object with the specified name, price, branch, category, and availability.
+     *
+     * @param name         The name of the menu item.
+     * @param price        The price of the menu item.
+     * @param branch       The branch associated with the menu item.
+     * @param category     The category of the menu item.
+     * @param availability The availability status of the menu item.
+     */
+    public Menu(String name, float price, String branch, String category, boolean availability) {
+        this.name = name;
+        this.price = price;
         this.branch = branch;
         this.category = category;
         this.availability = availability;
     }
 
-    //get
+    /**
+     * Retrieves the price of the menu item.
+     *
+     * @return The price of the menu item.
+     */
     public float getPrice() {
         return price;
     }
 
+    /**
+     * Retrieves the name of the menu item.
+     *
+     * @return The name of the menu item.
+     */
     public String getName() {
         return name;
     }
 
-    public String getBranch(){ return branch;}
+    /**
+     * Retrieves the branch associated with the menu item.
+     *
+     * @return The branch associated with the menu item.
+     */
+    public String getBranch() {
+        return branch;
+    }
 
-    public String getCategory(){ return category;}
+    /**
+     * Retrieves the category of the menu item.
+     *
+     * @return The category of the menu item.
+     */
+    public String getCategory() {
+        return category;
+    }
 
+    /**
+     * Checks if the menu item is available.
+     *
+     * @return True if the menu item is available, otherwise false.
+     */
     public boolean isAvailable() {
         return availability;
     }
 
-    //set
-    public void setPrice(float p) {this.price = p;}
+    /**
+     * Sets the price of the menu item.
+     *
+     * @param price The price to set for the menu item.
+     */
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
-    public void setName(String n) {this.name = n;}
+    /**
+     * Sets the name of the menu item.
+     *
+     * @param name The name to set for the menu item.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public void setBranch(String branch){this.branch = branch;}
+    /**
+     * Sets the branch associated with the menu item.
+     *
+     * @param branch The branch to set for the menu item.
+     */
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
 
-    public void setAvailability(boolean availability) {this.availability = availability;}
-
-
-
+    /**
+     * Sets the availability status of the menu item.
+     *
+     * @param availability The availability status to set for the menu item.
+     */
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
+    }
 }

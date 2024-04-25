@@ -9,10 +9,20 @@ import java.util.Scanner;
 import order.CreateOrder;
 import order.Order;
 
+/**
+ * The MenuBrowsing class provides functionality for browsing and selecting menu items.
+ * It allows users to view the menu of a specific branch, choose items, and add them to an order cart.
+ */
 public class MenuBrowsing {
     public static String branchName;
     public static Order order;
 
+    /**
+     * Displays the menu of a specified branch and allows the user to select items to add to the order cart.
+     *
+     * @param branchName The name of the branch whose menu is to be displayed.
+     * @throws IOException If an I/O error occurs while reading the menu data.
+     */
     private static void displayMenuBrowsing(String branchName) throws IOException {
         ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(branchName);
         System.out.println("Browsing Menu at:\t" + branchName);
@@ -20,7 +30,12 @@ public class MenuBrowsing {
         order.displayCart();
     }
 
-
+    /**
+     * Runs the menu browsing process for a specified branch.
+     *
+     * @param branchName The name of the branch to browse the menu for.
+     * @throws IOException If an I/O error occurs while reading the menu data.
+     */
     public static void run(String branchName) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
@@ -28,7 +43,7 @@ public class MenuBrowsing {
         ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(branchName);
 
         // no items added to cart yet
-        try{
+        try {
             displayMenuBrowsing(branchName);
             System.out.println("Enter 0 to exit the Menu and pay");
             System.out.println("Please select which category you would like: ");
@@ -37,30 +52,26 @@ public class MenuBrowsing {
                 exit = true;
                 order.calculateTotalSum();
                 System.out.println("Total: " + order.formatTotalSum());
-            }
-            else if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
+            } else if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
                 System.out.println("Invalid choice, please try again");
-            }
-            else if (branchMenu.get(choiceMainMenu-1).size() <= 0) {
+            } else if (branchMenu.get(choiceMainMenu - 1).size() <= 0) {
                 System.out.println("No available items in that category, please pick another one");
+            } else {
+                ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu - 1));
             }
-            else {
-                ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu-1));
-            }
-        }catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
             System.out.println("Please enter a valid input");
             scanner.nextLine();
         }
 
         while (!exit) {
-
-            try{
+            try {
                 // subsequent items
                 System.out.println("Enter 0 to exit the Menu and pay");
                 // ADDED - option to add, remove, edit items in cart
                 System.out.println("1. Continue ordering\n2. Empty cart.");
                 int opt = scanner.nextInt();
-                switch (opt){
+                switch (opt) {
                     case 0:
                         exit = true;
                         float totalSum = order.calculateTotalSum();
@@ -74,12 +85,10 @@ public class MenuBrowsing {
 
                         if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
                             System.out.println("Invalid choice, please try again");
-                        }
-                        else if (branchMenu.get(choiceMainMenu-1).size() <= 0) {
+                        } else if (branchMenu.get(choiceMainMenu - 1).size() <= 0) {
                             System.out.println("No available items in that category, please pick another one");
-                        }
-                        else {
-                            ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu-1));
+                        } else {
+                            ChoiceMenu.chooseItems(branchMenu.get(choiceMainMenu - 1));
                         }
                         break;
                     case 2:
@@ -93,12 +102,10 @@ public class MenuBrowsing {
                     default:
                         System.out.println("Invalid input!");
                 }
-
-            }catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 System.out.println("Please enter a valid input");
                 scanner.nextLine();
             }
         }
     }
-
 }

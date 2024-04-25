@@ -2,9 +2,17 @@ package payment;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * The Payment class provides methods for managing payment options and transactions.
+ */
 public class Payment {
 	public Payment() {}
+	/**
+	 * Displays available payment methods.
+	 *
+	 * @param paymentMethods The list of payment methods to be displayed.
+	 */
+
 	// Initialize with default payment methods
 
 	public static void showMethods(ArrayList<? extends PaymentMethod> paymentMethods) {
@@ -14,8 +22,13 @@ public class Payment {
 		}
 		System.out.println("=============================");
 	}
-	
-	
+
+	/**
+	 * Adds a new payment method to the list.
+	 *
+	 * @param paymentMethods The list of payment methods to be updated.
+	 */
+
 	public static void addMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -101,8 +114,13 @@ public class Payment {
 			}
 		} while (choice < 1 || choice > paymentMethods.size());
 	}
-	
-	
+
+	/**
+	 * Removes a payment method from the list.
+	 *
+	 * @param paymentMethods The list of payment methods to be updated.
+	 */
+
 	public static void removeMethod(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -123,8 +141,13 @@ public class Payment {
 			}
 		} while (choice < 1 || choice > size);
 	}
-	
-	
+
+	/**
+	 * Initiates a payment transaction using the selected payment method.
+	 *
+	 * @param paymentMethods The list of payment methods available for selection.
+	 */
+
 	public static void pay(ArrayList<PaymentMethod> paymentMethods) {
 		Scanner sc = new Scanner(System.in);
 

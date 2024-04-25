@@ -16,8 +16,19 @@ import payment.Payment;
 import payment.PaymentMethod;
 import payment.PaymentMethodList;
 
-
+/**
+ * Represents the main menu for admin tasks accessible by an admin user.
+ */
 public class AdminMainMenu {
+
+	/**
+	 * Displays the main menu for administrative tasks and handles user input.
+	 *
+	 * @param staff The admin staff member accessing the menu.
+	 * @throws IOException               If an I/O error occurs.
+	 * @throws ClassNotFoundException    If the class of a serialized object cannot be found.
+	 * @throws UnknownStaffRoleException If an unknown staff role is encountered.
+	 */
 	public static void mainMenu(Admin staff) throws IOException, ClassNotFoundException, UnknownStaffRoleException {
 		Scanner sc = new Scanner(System.in);
 		int staffchoice;		

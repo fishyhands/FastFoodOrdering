@@ -5,17 +5,37 @@ import java.util.ArrayList;
 
 import database.Database;
 
+/**
+ * The MenuList class manages the list of menu items.
+ * It provides methods to read menu data from the database, display the menu, categorize menu items by branch and category,
+ * and write menu data back to the database.
+ */
 public class MenuList {
-	private static ArrayList<Menu> menuList;
-	
-	public MenuList() throws IOException {
-		menuList = Database.readMenuList();
-	}
-	
-	public static ArrayList<Menu> getMenuList() {
-		return menuList;
-	}
-	
+    private static ArrayList<Menu> menuList;
+
+    /**
+     * Constructs a new MenuList object and initializes the menu list by reading data from the database.
+     *
+     * @throws IOException If an I/O error occurs while reading menu data.
+     */
+    public MenuList() throws IOException {
+        menuList = Database.readMenuList();
+    }
+
+    /**
+     * Retrieves the list of menu items.
+     *
+     * @return The list of menu items.
+     */
+    public static ArrayList<Menu> getMenuList() {
+        return menuList;
+    }
+
+    /**
+     * Displays the menu categorized by different categories.
+     *
+     * @param branchMenu The menu categorized by branch.
+     */
     public static void displayMenu(ArrayList<ArrayList<Menu>> branchMenu) {
         System.out.println("1)\tSet Meals:");
         displayItems(branchMenu.get(0));
@@ -29,8 +49,13 @@ public class MenuList {
         displayItems(branchMenu.get(4));
     }
 
-
-    public static ArrayList<ArrayList<Menu>> getBranchMenu(String branch){
+    /**
+     * Retrieves the menu categorized by branch.
+     *
+     * @param branch The branch to filter the menu items.
+     * @return The menu categorized by branch.
+     */
+    public static ArrayList<ArrayList<Menu>> getBranchMenu(String branch) {
         ArrayList<Menu> setMeals = new ArrayList<>();
         ArrayList<Menu> burgers = new ArrayList<>();
         ArrayList<Menu> sides = new ArrayList<>();
@@ -68,14 +93,19 @@ public class MenuList {
         return branchMenu;
     }
 
+    /**
+     * Writes the menu list data to the database.
+     *
+     * @throws IOException If an I/O error occurs while writing menu data.
+     */
+    public static void writeMenuList() throws IOException {
+        Database.writeMenuList(menuList);
+    }
+
     // Helper method to display menu items
     private static void displayItems(ArrayList<Menu> items) {
         for (Menu item : items) {
             System.out.println(item.getName() + ": $" + item.getPrice() + " [" + (item.isAvailable() ? "Available" : "Not Available") + "]");
         }
-    }
-    
-    public static void writeMenuList() throws IOException {
-    	Database.writeMenuList(menuList);
     }
 }

@@ -64,12 +64,12 @@ public class Branch {
     public void setBranchName(String branchName) {this.branchName = branchName;}
     /**
     * Changes the location of this Branch.
-    * @param branchName This Branch's new location.
+    * @param branchLocation This Branch's new location.
     */
     public void setBranchLocation(String branchLocation) {this.branchLocation = branchLocation;}
     /**
     * Changes the staff quota of this Branch.
-    * @param branchName This Branch's new staff quota.
+    * @param staffQuota This Branch's new staff quota.
     */
     public void setStaffQuota(int staffQuota) {this.staffQuota = staffQuota;}
     /**

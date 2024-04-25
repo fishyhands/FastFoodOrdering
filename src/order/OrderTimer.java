@@ -4,8 +4,17 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-
+/**
+ * The OrderTimer class provides functionality for managing order timers.
+ * It allows for the removal of orders that have exceeded certain time limits.
+ */
 public class OrderTimer {
+
+    /**
+     * Removes orders from the list that have exceeded certain time limits.
+     *
+     * @param orderList The list of orders to be checked.
+     */
     public static void timerOrder(ArrayList<Order> orderList) {
         // Create a list to hold orders to remove
         ArrayList<Order> ordersToRemove = new ArrayList<>();
@@ -34,4 +43,3 @@ public class OrderTimer {
         orderList.removeAll(ordersToRemove);
     }
 }
-
