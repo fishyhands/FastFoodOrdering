@@ -26,7 +26,7 @@ public class Admin extends Staff {
 
 
     public ArrayList<Staff> addStaff(String name, String id, String password, String role, String gender, int age, String branch, ArrayList<Staff> staffList){
-    	BranchStaff newStaff = new BranchStaff(name,id,password,role,gender,age,branch);
+        BranchStaff newStaff = new BranchStaff(name,id,password,role,gender,age,branch);
         staffList.add(newStaff);
         System.out.println("New Staff " + name + " added");
         return staffList;
@@ -118,10 +118,10 @@ public class Admin extends Staff {
     public void assignManager(ArrayList<Branch> branchList, ArrayList<Staff> staffList){
         for(Branch branch: branchList) {
             int staffCount = getStaffCount(branch, staffList);
-            int requiredManagers = calculateRequiredManagers(staffCount);
+            int requiredManagers = calculateRequiredManagers(staffCount) - getManagerCount(branch,staffList);
             if (requiredManagers > 0) {
-                System.out.println("Branch: " + branch.getBranchName() + "has insufficient managers.");
-                System.out.println("It requires" + requiredManagers + "manager(s).");
+                System.out.println("Branch: " + branch.getBranchName() + " has insufficient managers.");
+                System.out.println("It requires " + requiredManagers + " manager(s).");
             }
         }
 
@@ -152,11 +152,22 @@ public class Admin extends Staff {
         }
         return count;
     }
-    
-    public void openNewBranch(ArrayList<Branch> branchList, String branchName, String branchLocation, int staffQuota) {   	
-    	branchList.add(new Branch(branchName, branchLocation, staffQuota, true));
+
+    private int getManagerCount(Branch branch, ArrayList<Staff> staffList){
+        int count = 0;
+        for(Staff staff: staffList){
+            if(staff.getBranch().equals(branch.getBranchName()) && staff.getRole().equals("M")){
+                count++;
+            }
+        }
+        return count;
     }
-    
+
+
+    public void openNewBranch(ArrayList<Branch> branchList, String branchName, String branchLocation, int staffQuota) {
+        branchList.add(new Branch(branchName, branchLocation, staffQuota, true));
+    }
+
     public void staffMenu() throws IOException, UnknownStaffRoleException, ClassNotFoundException {
         AdminMainMenu.mainMenu(this);
     }

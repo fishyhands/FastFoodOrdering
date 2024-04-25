@@ -52,24 +52,31 @@ public class OrderMainMenu {
                             }else if(branchOption == 0){
                                 break;
                             }
-                            String branchName = branches.get(branchOption - 1).getBranchName();
-                            //call menu
-                            MenuBrowsing.run(branchName);
-                            //if cart empty
-                            if(order.getCart().isEmpty()){
-                                System.out.println("Cart is empty. Order has not been created.");
+                            if(branches.get(branchOption-1).getOpenOrClose()){
+                                String branchName = branches.get(branchOption - 1).getBranchName();
+                                //call menu
+                                MenuBrowsing.run(branchName);
+                                //if cart empty
+                                if(order.getCart().isEmpty()){
+                                    System.out.println("Cart is empty. Order has not been created.");
+                                    break;
+                                }
+                                if (!order.getCart().isEmpty()) {
+                                    PaymentMainMenu.PaymentMenu(paymentMethods);
+                                    orderList.add(order);
+                                    Database.writeOrderList(orderList);
+                                    System.out.println("-----------------------");
+                                    System.out.println("Your Order ID is: " + order.getOrderID());
+                                    System.out.println("Ordered at: " + order.getTime());
+                                    order.displayCart();
+                                    System.out.println("-----------------------");
+                                    break;
+                                }
+                            }else{
+                                System.out.println("The branch is closed");
                                 break;
                             }
-                            if (!order.getCart().isEmpty()) {
-                                PaymentMainMenu.PaymentMenu(paymentMethods);
-                                orderList.add(order);
-                                Database.writeOrderList(orderList);
-                                System.out.println("-----------------------");
-                                System.out.println("Your Order ID is: " + order.getOrderID());
-                                System.out.println("Ordered at: " + order.getTime());
-                                System.out.println("-----------------------");
-                                break;
-                            }
+
 
                         }catch(InputMismatchException e){
                             System.out.println("Please enter a valid input");

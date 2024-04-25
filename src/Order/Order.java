@@ -4,6 +4,7 @@ package Order;
 import Database.Database;
 import Menu.Menu;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -118,5 +119,9 @@ public class Order {
         }
         setTotalSum(sum);
         return sum;
+    }
+    public String formatTotalSum() {
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(this.totalSum);
     }
 }

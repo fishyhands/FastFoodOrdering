@@ -29,25 +29,29 @@ public class ChoiceMenu {
                     if (choice==0){
                         break;
                     }else{
-                        itemName = menuCategory.get(choice-1).getName();
-                        System.out.println("Enter the quantity: ");
-                        quantity = sc.nextInt();
+                        if(menuCategory.get(choice-1).isAvailable()) {
+                            itemName = menuCategory.get(choice - 1).getName();
+                            System.out.println("Enter the quantity: ");
+                            quantity = sc.nextInt();
 
-                        if (order.getCart().containsKey(itemName)){
-                            int addQuantity = order.getCart().get(itemName) + quantity;
-                            order.getCart().put(itemName, addQuantity);
-                            System.out.println("Added to cart");
-                        } else {
-                            order.getCart().put(itemName, quantity);
-                            System.out.println("Added to cart");
+                            if (order.getCart().containsKey(itemName)) {
+                                int addQuantity = order.getCart().get(itemName) + quantity;
+                                order.getCart().put(itemName, addQuantity);
+                                System.out.println("Added to cart");
+                                order.displayCart();
+                            } else {
+                                order.getCart().put(itemName, quantity);
+                                System.out.println("Added to cart");
+                                order.displayCart();
+                            }
+                            break;
+                        }else{
+                            System.out.println("Item is not available");
                         }
-                        break;
                     }
 
                 }
-            }catch(IndexOutOfBoundsException ex){
-                System.out.println("please enter a valid input");
-            }catch(InputMismatchException ex){
+            }catch(IndexOutOfBoundsException | InputMismatchException ex){
                 System.out.println("please enter a valid input");
             }
         }

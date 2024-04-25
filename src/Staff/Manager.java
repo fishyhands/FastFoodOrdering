@@ -26,13 +26,13 @@ public class Manager extends BranchStaff {
 	
 	public ArrayList<Menu> removeItem(String itemName, ArrayList<Menu> menuList) {
         boolean found = false;
-        displayBranchMenu(menuList);
         Menu remove = null;
         for (Menu o: menuList){
             if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
                 remove = o;
                 System.out.println(itemName + " removed");
                 found = true;
+                displayBranchMenu(menuList);
                 break;
             }
         }
@@ -46,11 +46,13 @@ public class Manager extends BranchStaff {
 	
 	public ArrayList<Menu> updatePrice(String itemName, float newPrice, ArrayList<Menu> menuList) {
         boolean found = false;
-        displayBranchMenu(menuList);
+
 		for (Menu o: menuList){
             if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
 				o.setPrice(newPrice);
 				System.out.println(itemName + " price changed to $" + newPrice);
+                displayBranchMenu(menuList);
+                found = true;
                 break;
 			}
 		}
@@ -62,10 +64,11 @@ public class Manager extends BranchStaff {
 
     public ArrayList<Menu> updateAvailability(String itemName, ArrayList<Menu> menuList){
         boolean found = false;
-        displayBranchMenu(menuList);
+
         for (Menu o: menuList){
             if (Objects.equals(o.getName(),itemName) & o.getBranch().equals(this.getBranch())){
                 o.setAvailability(!o.isAvailable());
+                displayBranchMenu(menuList);
                 found = true;
             }
         }
@@ -76,7 +79,7 @@ public class Manager extends BranchStaff {
     }
 
     public void displayStaffList(ArrayList<Staff> staffList){
-        System.out.println("Staff in this branch: ");
+        System.out.println("Staff in this branch: " + this.getBranch());
         for (Staff o: staffList){
             if (o.getBranch().equals(this.getBranch())){
                 System.out.println(o.getStaffName());
@@ -87,7 +90,7 @@ public class Manager extends BranchStaff {
     public void displayBranchMenu(ArrayList<Menu> menuList){
         for (Menu o: menuList){
             if (o.getBranch().equals(this.getBranch()))
-                System.out.println(o.getName() + o.getCategory() + o.getPrice() + o.isAvailable());
+                System.out.println(o.getName() + " " + o.getCategory()+ " " + o.getPrice() + " " + o.isAvailable());
         }
     }
     
