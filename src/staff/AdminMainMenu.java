@@ -22,7 +22,7 @@ import payment.PaymentMethodList;
 public class AdminMainMenu {
 
 	/**
-	 * Displays the main menu for administrative tasks and handles user input.
+	 * Displays the main menu for admin tasks and handles user input.
 	 *
 	 * @param staff The admin staff member accessing the menu.
 	 * @throws IOException               If an I/O error occurs.
