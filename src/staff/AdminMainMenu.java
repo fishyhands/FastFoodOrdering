@@ -1,19 +1,13 @@
 package staff;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Scanner;
 
-import branch.Branch;
 import branch.BranchList;
-import database.Database;
 import exceptions.UnknownStaffRoleException;
-import order.Order;
 import order.OrderList;
 import order.OrderTimer;
 import payment.Payment;
-import payment.PaymentMethod;
 import payment.PaymentMethodList;
 
 /**
@@ -35,7 +29,7 @@ public class AdminMainMenu {
 
 		do {
 			OrderTimer.timerOrder(OrderList.getOrderList()); // Remove the Orders that have expired
-	        System.out.println("Enter\n1 to add staff account,\n2 to remove staff account, \n3 to edit staff name, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch, \n8 to add payment method, \n9 to remove payment method, \n10 to change branch status, \n11 to open new branch, \n12 to change password, \n13 to logout");
+	        System.out.println("\nManage Staff\n-------------\n1 to add staff account,\n2 to remove staff account, \n3 to edit staff name, \n4 to display staff list, \n5 to assign managers, \n6 to promote a staff to manager, \n7 to transfer staff to another branch\n\nManage Payment Methods\n-------------\n8 to add payment method, \n9 to remove payment method\n\nManage Branches\n-------------\n10 to change branch status, \n11 to open new branch\n\nAccount\n-------------\n12 to change password, \n13 to logout\n\nEnter choice");
 	        staffchoice = sc.nextInt();
 			sc.nextLine();// non int error
 	        if (staffchoice == 1) { //some possible exceptions here

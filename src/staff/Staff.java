@@ -125,17 +125,9 @@ public abstract class Staff {
      * Sets the password of the staff member.
      *
      * @param newPassword The new password of the staff member.
-     * @throws IOException               If an I/O error occurs.
-     * @throws UnknownStaffRoleException If the staff role is unknown.
      */
-    public void setPassword(String newPassword) throws IOException, UnknownStaffRoleException {
-        ArrayList<Staff> staffList = StaffList.getStaffList();
-        for (Staff s : staffList) {
-            if (this.getLoginID().equals(s.getLoginID())) {
-                s.staffPassword = newPassword;
-                break;
-            }
-        }
+    public void setPassword(String newPassword) {
+    	this.staffPassword = newPassword;
     }
 
     /**

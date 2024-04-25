@@ -13,37 +13,21 @@ import java.util.Scanner;
  */
 
 public class Admin extends Staff {
-    private String name;
-    private String loginID;
-    private String password;
-    private String adminRole;
-    private String gender;
-    private int age;
-    private String branch;
 
-    /**
-     * Constructs a new Admin object with the specified attributes.
+	/**
+     * Constructor to initialize an Admin object.
      *
-     * @param name       The name of the admin.
-     * @param loginID    The login ID of the admin.
-     * @param password   The password of the admin.
-     * @param adminRole  The role of the admin.
-     * @param gender     The gender of the admin.
-     * @param age        The age of the admin.
-     * @param branch     The branch associated with the admin.
+     * @param name     	    The name of the admin.
+     * @param loginID       The login ID of the admin.
+     * @param password      The password of the admin.
+     * @param adminRole     The role of the admin.
+     * @param gender        The gender of the admin.
+     * @param age           The age of the admin.
+     * @param branch        The branch where the admin works.
      */
-
     public Admin(String name, String loginID, String password, String adminRole, String gender, int age, String branch){
         super(name, loginID, password, adminRole, gender, age, branch);
-
     }
-
-    /**
-     * Sets the password for the admin.
-     *
-     * @param password The new password to set.
-     */
-    public void setPassword(String password) {this.password = password;}
 
     /**
      * Adds a new staff member to the system.
