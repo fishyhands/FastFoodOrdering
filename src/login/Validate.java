@@ -7,7 +7,9 @@ import staff.Staff;
 import staff.StaffList;
 
 import java.util.ArrayList;
+/*
 
+ */
 public class Validate {
     public static boolean validated;
     public static Staff validateStaff(String loginID, String password) {
