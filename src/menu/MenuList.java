@@ -101,8 +101,12 @@ public class MenuList {
     public static void writeMenuList() throws IOException {
         Database.writeMenuList(menuList);
     }
+    /*
+    Helper method to display menu items
+    *
+    * @param items an arraylist of the menu items
+    */
 
-    // Helper method to display menu items
     private static void displayItems(ArrayList<Menu> items) {
         for (Menu item : items) {
             System.out.println(item.getName() + ": $" + item.getPrice() + " [" + (item.isAvailable() ? "Available" : "Not Available") + "]");
