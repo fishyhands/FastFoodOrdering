@@ -41,12 +41,20 @@ public class AdminMainMenu {
 	            String loginID = sc.next();
 				System.out.println("Press Enter to continue...");
 				sc.nextLine();
-	            System.out.println("Enter role");
+	            System.out.println("Enter role (S for staff, M for manager, A for admin)");
 	            String role = sc.next();
+	            if (!(role.equals("S") || role.equals("M") || role.equals("A"))) {
+	            	System.out.println("Invalid role input");
+	            	continue;
+	            }
 				System.out.println("Press Enter to continue...");
 				sc.nextLine();
-	            System.out.println("Enter gender");
+	            System.out.println("Enter gender (M for male, F for female)");
 	            String gender = sc.next();
+	            if (!(gender.equals("M") || gender.equals("F"))) {
+	            	System.out.println("Invalid gender input");
+	            	continue;
+	            }
 				System.out.println("Press Enter to continue...");
 				sc.nextLine();
 	            System.out.println("Enter age");
