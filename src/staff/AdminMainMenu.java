@@ -41,9 +41,9 @@ public class AdminMainMenu {
 	            String loginID = sc.next();
 				System.out.println("Press Enter to continue...");
 				sc.nextLine();
-	            System.out.println("Enter role (S for staff, M for manager, A for admin)");
+	            System.out.println("Enter role (S for staff, M for manager)");
 	            String role = sc.next();
-	            if (!(role.equals("S") || role.equals("M") || role.equals("A"))) {
+	            if (!(role.equals("S") || role.equals("M"))) {
 	            	System.out.println("Invalid role input");
 	            	continue;
 	            }
