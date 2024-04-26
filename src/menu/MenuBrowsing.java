@@ -14,8 +14,7 @@ import order.Order;
  * It allows users to view the menu of a specific branch, choose items, and add them to an order cart.
  */
 public class MenuBrowsing {
-    public static String branchName;
-    public static Order order;
+    public static Order currentOrder;
 
     /**
      * Displays the menu of a specified branch and allows the user to select items to add to the order cart.
@@ -27,7 +26,7 @@ public class MenuBrowsing {
         ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(branchName);
         System.out.println("Browsing Menu at:\t" + branchName);
         MenuList.displayMenu(branchMenu);
-        order.displayCart();
+        currentOrder.displayCart();
     }
 
     /**
@@ -39,7 +38,7 @@ public class MenuBrowsing {
     public static void run(String branchName) throws IOException {
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
-        order = CreateOrder.createOrder(branchName);
+        currentOrder = CreateOrder.createOrder(branchName);
         ArrayList<ArrayList<Menu>> branchMenu = MenuList.getBranchMenu(branchName);
 
         // no items added to cart yet
@@ -50,8 +49,8 @@ public class MenuBrowsing {
             int choiceMainMenu = scanner.nextInt();
             if (choiceMainMenu == 0) {
                 exit = true;
-                order.calculateTotalSum();
-                System.out.println("Total: " + order.formatTotalSum());
+                currentOrder.calculateTotalSum();
+                System.out.println("Total: " + currentOrder.formatTotalSum());
             } else if (choiceMainMenu < 0 || choiceMainMenu > branchMenu.size()) {
                 System.out.println("Invalid choice, please try again");
             } else if (branchMenu.get(choiceMainMenu - 1).size() <= 0) {
@@ -74,7 +73,7 @@ public class MenuBrowsing {
                 switch (opt) {
                     case 0:
                         exit = true;
-                        float totalSum = order.calculateTotalSum();
+                        float totalSum = currentOrder.calculateTotalSum();
                         String formattedValue = String.format("%.2f", totalSum);
                         System.out.println("Total: " + formattedValue);
                         break;
@@ -96,7 +95,7 @@ public class MenuBrowsing {
                         // create new hash map
                         HashMap<String, Integer> newCart = new HashMap<>();
                         // replace with empty cart
-                        order.setCart(newCart);
+                        currentOrder.setCart(newCart);
                         System.out.println("Cart emptied!");
                         break;
                     default:

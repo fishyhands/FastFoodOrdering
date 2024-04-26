@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.lang.IndexOutOfBoundsException;
 
-import static menu.MenuBrowsing.order;
+import static menu.MenuBrowsing.currentOrder;
 
 /**
  * The ChoiceMenu class provides functionality for choosing menu items and quantities.
@@ -44,15 +44,15 @@ public class ChoiceMenu {
                             System.out.println("Enter the quantity: ");
                             quantity = sc.nextInt();
 
-                            if (order.getCart().containsKey(itemName)) {
-                                int addQuantity = order.getCart().get(itemName) + quantity;
-                                order.getCart().put(itemName, addQuantity);
+                            if (currentOrder.getCart().containsKey(itemName)) {
+                                int addQuantity = currentOrder.getCart().get(itemName) + quantity;
+                                currentOrder.getCart().put(itemName, addQuantity);
                                 System.out.println("Added to cart");
-                                order.displayCart();
+                                currentOrder.displayCart();
                             } else {
-                                order.getCart().put(itemName, quantity);
+                            	currentOrder.getCart().put(itemName, quantity);
                                 System.out.println("Added to cart");
-                                order.displayCart();
+                                currentOrder.displayCart();
                             }
                             break;
                         } else {

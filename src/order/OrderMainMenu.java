@@ -1,6 +1,6 @@
 package order;
 
-import static menu.MenuBrowsing.order;
+import static menu.MenuBrowsing.currentOrder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,17 +66,17 @@ public class OrderMainMenu {
                                 //call menu
                                 MenuBrowsing.run(branchName);
                                 //if cart empty
-                                if(order.getCart().isEmpty()){
+                                if(currentOrder.getCart().isEmpty()){
                                     System.out.println("Cart is empty. Order has not been created.");
                                     break;
                                 }
-                                if (!order.getCart().isEmpty()) {
+                                if (!currentOrder.getCart().isEmpty()) {
                                     PaymentMainMenu.PaymentMenu(PaymentMethodList.getPaymentMethodList());
-                                    OrderList.getOrderList().add(order);
+                                    OrderList.getOrderList().add(currentOrder);
                                     System.out.println("-----------------------");
-                                    System.out.println("Your Order ID is: " + order.getOrderID());
-                                    System.out.println("Ordered at: " + order.getTime());
-                                    order.displayCart();
+                                    System.out.println("Your Order ID is: " + currentOrder.getOrderID());
+                                    System.out.println("Ordered at: " + currentOrder.getTime());
+                                    currentOrder.displayCart();
                                     System.out.println("-----------------------");
                                     break;
                                 }

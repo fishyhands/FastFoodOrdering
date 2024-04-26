@@ -1,6 +1,6 @@
 package payment;
 
-import static menu.MenuBrowsing.order;
+import static menu.MenuBrowsing.currentOrder;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ public class PaymentMainMenu {
     public static void PaymentMenu(ArrayList<PaymentMethod> paymentMethods){
         initializePayment(paymentMethods);
         Payment.pay(paymentMethods);
-        order.setPaid(true);
+        currentOrder.setPaid(true);
     }  
 }
 
